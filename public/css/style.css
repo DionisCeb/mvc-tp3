@@ -1,0 +1,48 @@
+@import url(componnents/navigations.css);
+@import url(componnents/header-box.css);
+@import url(reservation-section.css);
+@import url(reservation-confirmation.css);
+@import url(location-section.css);
+@import url(admin-interface/booking-list.css);
+@import url(admin-interface/form-admin-section.css);
+
+/*error css*/
+@import url(error/error.css);
+
+/*footer*/
+@import url(componnents/footer.css);
+
+/*animations*/
+@import url(animations/animations.css);
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --primary-link: rgb(218, 160, 113);
+}
+body {
+    background-color: rgb(56, 111, 152);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    width: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+}
+.structure {
+    width: 80%;
+}
+

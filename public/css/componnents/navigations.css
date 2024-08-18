@@ -1,0 +1,53 @@
+/*body of nav*/
+nav {
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/*Logo*/
+.logo {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.logo h2{
+    width: 50%;
+    color: rgb(225, 225, 225);
+}
+.logo-img{
+    width: 100px;
+    height: 100px;
+}
+
+.logo-img img{
+    border-radius: 50%;
+}
+
+/*page links*/
+.page-links {
+    display: flex;
+    gap: 5px;
+}
+
+.page-links a {
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.page-links a:hover {
+    background-color: gray;
+}
+
+/*button contact*/
+.contact-btn {
+    padding: 20px;
+    background-color: var(--primary-link);
+    color: rgb(48, 48, 48);
+    font-weight: bold;
+    border-radius: 10px;
+}
