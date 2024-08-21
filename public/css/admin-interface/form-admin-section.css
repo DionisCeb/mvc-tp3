@@ -1,0 +1,18 @@
+.form-section {
+    display: flex;
+    justify-content: center;
+    min-height: 75vh;
+    padding-bottom: 5px;
+}
+
+/*Alignement of form*/
+.form-box-center.form-box-center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;       
+}
+
+

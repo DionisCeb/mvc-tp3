@@ -1,0 +1,60 @@
+.form-box .form-reservation{
+    background-color: var(--general-color-forms);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    max-width: 500px;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.form-reservation select,
+.form-reservation input{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.form-reservation input.error {
+    border-color: red;
+}
+
+.reserve-submit {
+    display: flex;
+    gap: 5px;
+}
+
+.reserve-submit input {
+    width: 100%;
+    color: orange;
+    font-size: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    transition: background-color 0.7s, color 0.5s, transform 0.5s;
+    cursor: pointer;
+}
+.reserve-submit input:hover {
+    background-color: orange;
+    color: white;
+    transform: scale(0.98);
+}
+
+/*check-in, check-out*/
+/* .name-surname input {
+    width: 100%;
+}
+.name-surname {
+    display: flex;
+    gap: 10px;
+} */
+.email-phone, .name-surname,
+.check-in, .check-out {
+    display: flex;
+    gap: 10px;
+}
+.email-phone input, .name-surname input,
+.check-in input, .check-out input {
+    width: 100%;
+}

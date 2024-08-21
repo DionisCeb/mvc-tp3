@@ -1,0 +1,85 @@
+/*Entete*/
+:root {
+    --color-header: rgb(224, 224, 224);
+}
+/*the body of the box*/
+.header-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/*the box*/
+
+.header-section__box {
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+}
+
+
+.header-box__title {
+    font-size: 40px;
+    color: var(--color-header);
+    text-align: center;
+
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.header-box__sub-title {
+    font-size: 20px;
+    font-weight: normal;
+    text-align: center;
+    color: var(--color-header);
+
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+}
+
+/*The buttons*/
+.header-box__buttons {
+    display: flex;
+    gap: 20px;
+
+    opacity: 0;
+    animation: fadeIn 1.2s forwards;
+}
+
+.header-box_btn{
+    color: white;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: var(--primary-link);
+    border-radius: 20px;
+    transition: background-color 0.7s, color 0.5s, transform 0.5s;
+
+    
+}
+
+.rent-link {
+    background: none;
+    color: var(--primary-link);
+    border: 2px solid var(--primary-link);
+
+}
+
+.rent-link:hover{
+    background-color: var(--primary-link);
+    color: white;
+}
+
+.deals-link:hover {
+    background-color: rgb(255, 184, 52);
+    transform: scale(0.97);
+}

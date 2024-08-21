@@ -1,0 +1,11 @@
+GitHub https://github.com/DionisCeb/mvc-tp2
+WebDev Je ne peux pas lancer le projet en dehors du collège. Je vous enverrai le lien dès mon arrivée au collège demain (14 août).
+
+Il s'agit d'un projet de réservation de voitures. Les tables de la base de données sont décrites dans le fichier tables.txt. 
+La page "home" est la page sur laquelle arrive le client dès qu'il ouvre le projet "/" ou "/home". 
+Pour effectuer une réservation, appuyez sur le bouton de réservation qui vous amène à une section d'introduction, 
+suivi d'un bouton qui vous amène à la page de création de réservation. Une fois la réservation créée, l'utilisateur est dirigé vers la page principale de réservation, 
+où toute réservation peut être modifiée ou supprimée.
+
+
+Merci de votre compréhension et de la prolongation accordée!

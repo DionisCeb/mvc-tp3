@@ -1,0 +1,7 @@
+@import url(form/reservation-form.css);
+@import url(form/authform.css);
+
+/*general color for forms*/
+:root {
+    --general-color-forms: #bfbfbf;
+}

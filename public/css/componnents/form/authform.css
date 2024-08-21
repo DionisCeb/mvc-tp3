@@ -1,0 +1,35 @@
+.form-auth {
+    padding: 20px;
+    background-color: var(--general-color-forms);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 20px;
+}
+
+/*title*/
+.form-auth h2 {
+    text-align: center;
+    color: rgb(111, 81, 25);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.form-auth div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/*label*/
+.form-auth div label {
+    font-size: 20px;
+}
+
+/*input*/
+.form-auth div input, select {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
