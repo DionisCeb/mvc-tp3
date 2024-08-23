@@ -76,17 +76,14 @@ section.reservation-result-section {
 
 /*edit*/
 a.header-box_btn.deals-link.return-secondary-btn.secondary-edit-btn {
-    background-color: green;
+    background-color: var(--main-acent-color);
 }
 a.header-box_btn.deals-link.return-secondary-btn.secondary-edit-btn:hover {
-    background-color: rgb(29, 203, 29);
+    background-color: orange;
 }
 /*delete*/
 a.header-box_btn.deals-link.return-secondary-btn.secondary-delete-btn {
     background-color: rgb(142, 23, 23);
-}
-a.header-box_btn.deals-link.return-secondary-btn.secondary-delete-btn:hover {
-    background-color: red;
 }
 
 

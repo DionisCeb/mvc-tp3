@@ -40,3 +40,20 @@ CREATE TABLE `booking` (
     FOREIGN KEY (`car_id`) REFERENCES `car`(`id`),
     FOREIGN KEY (`client_id`) REFERENCES `client`(`id`)
 );
+
+
+CREATE TABLE privilege (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    privilege VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE user (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    privilege_id INT NOT NULL,
+    CONSTRAINT fk_privilege_id FOREIGN KEY (privilege_id) REFERENCES privilege(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

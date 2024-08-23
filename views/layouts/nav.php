@@ -5,5 +5,5 @@
     <a class="nav-btn" href="">Blog</a>
 </div>
 <div class="contact-us">
-    <a class="contact-btn" href="">Contactez-nous</a>
+    <a class="contact-btn" href="{{base}}/login">Authentification</a>
 </div>

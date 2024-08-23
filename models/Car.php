@@ -73,4 +73,6 @@ class Car extends CRUD{
         // Return result (false if no record is found)
         return $result !== false ? $result : [];
     }
+
+    
 }

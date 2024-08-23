@@ -20,5 +20,8 @@
                         <input type="submit" value="Login">
                     </div>
                 </form>
+                <div class="redirect-register">
+                    <p>Pas encore enregistré? <a href="{{base}}/user/create">inscrivez-vous</a></p>
+                </div>
         </section>
 {{ include('layouts/footer.php')}}

@@ -17,10 +17,10 @@ class UserController{
 
         $validator = new Validator;
         $validator->field('name', $data['name'])->min(2)->max(50);
-        $validator->field('username', $data['username'])->email()->required()->max(50);
+        $validator->field('username', $data['username'])->email()->required()->max(50)->isUnique('User');
         $validator->field('password', $data['password'])->min(5)->max(20);
-        $validator->field('email', $data['email'])->email()->required()->max(50);
-        $validator->field('privilege_id', $data['privilege_id'], 'privilege')->required();
+        $validator->field('email', $data['email'])->email()->required()->max(50)->isUnique('User');
+        $validator->field('privilege_id', $data['privilege_id'], 'privilege')->required()->isExist('Privilege');
 
         if($validator->isSuccess()){
             $user = new User;

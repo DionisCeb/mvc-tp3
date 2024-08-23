@@ -4,7 +4,7 @@
             <div class="header-section">
                 <div class="header-section__box">
                     <div class="header-box__title">
-                        <h1>Deluuuxe Location</h1>
+                        <h1>Deluuxe Location</h1>
                     </div>
                     <div class="header-box__sub-title">
                         <h1>Nous offrons les meilleurs prix</h1>

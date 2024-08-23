@@ -23,3 +23,6 @@
         {% endif %}
     </nav>
 <main>
+        {% if guest is empty %}
+            Bonjour {{ session.name }}
+        {% endif %}

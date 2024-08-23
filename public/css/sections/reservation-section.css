@@ -1,10 +1,9 @@
-@import url(componnents/reservation-form.css);
+@import url(../componnents/form/reservation-form.css);
 .reservation-section {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 80vh;
-    background-color: rgb(143, 170, 194);
 }
 
 
@@ -23,8 +22,12 @@
 /*title*/
 .create-booking__title {
     font-size: 40px;
-    color: rgb(138, 73, 73);
+    color: var(--main-acent-color);
     font-weight: bold;
+}
+
+h1.deals-title {
+    color: var(--main-acent-color);
 }
 
 /*title*/

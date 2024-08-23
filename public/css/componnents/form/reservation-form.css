@@ -41,14 +41,7 @@
     transform: scale(0.98);
 }
 
-/*check-in, check-out*/
-/* .name-surname input {
-    width: 100%;
-}
-.name-surname {
-    display: flex;
-    gap: 10px;
-} */
+
 .email-phone, .name-surname,
 .check-in, .check-out {
     display: flex;

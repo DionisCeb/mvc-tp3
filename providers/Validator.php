@@ -66,6 +66,33 @@ class Validator {
     }
 
     /**
+     * is Unique?
+     */
+    public function isUnique($model){
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        $unique = $model->unique($this->key, $this->value);
+        if($unique){
+            $this->errors[$this->key]="$this->name must be unique";
+        }
+        return $this;
+    }
+
+    /**
+     * Does it exists?
+     */
+    public function isExist($model, $field = 'id'){
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        $unique = $model->unique($field, $this->value);
+        if(!$unique){
+            $this->errors[$this->key]="$this->name must exist";
+        }
+        return $this;
+
+    }
+
+    /**
      * Vérifier si la valeur est une date valide et si elle n'est pas antérieure à aujourd'hui
      */
     public function date($format = 'Y-m-d') {

@@ -49,6 +49,9 @@
                 <input type="submit" class="btn" value="Save">
             </div>
         </form>
+        <div class="redirect-register">
+            <p>Déjà enregistré? <a href="{{base}}/login">se connecter</a></p>
+        </div>
     </section>
 {{ include('layouts/footer.php')}}
 

@@ -14,10 +14,19 @@ class AuthController{
     public function store($data){
 
         $validator = new Validator;
-        $validator->field('username', $data['username'])->email()->required()->max(50);
+        $validator->field('username', $data['username'])->email()->required()->max(50)->isExist('User', 'username');
         $validator->field('password', $data['password'])->min(5)->max(20);
 
         if($validator->isSuccess()){
+            $user = new User;
+            $checkuser = $user->checkuser($data['username'],$data['password']);
+
+            if($checkuser){
+                return View::redirect('bookings');
+            }else{
+                $errors['message'] = "Please check your credentials";
+                return View::render('auth/index', ['errors'=>$errors, 'user'=>$data]);
+            }
         
         }else{
             $errors = $validator->getErrors();

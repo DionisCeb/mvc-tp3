@@ -1,0 +1,10 @@
+@import url(form/form.css);
+/*footer*/
+@import url(footer.css);
+/*boxes*/
+@import url(boxes/boxes.css);
+/*navigation*/
+@import url(navigations.css);
+
+/*tables*/
+@import url(tables/table.css);

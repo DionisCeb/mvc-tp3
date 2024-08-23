@@ -39,15 +39,35 @@ nav {
     cursor: pointer;
 }
 
-.page-links a:hover {
-    background-color: gray;
-}
-
 /*button contact*/
+.contact-us {
+    display: flex;
+}
 .contact-btn {
     padding: 20px;
     background-color: var(--primary-link);
     color: rgb(48, 48, 48);
     font-weight: bold;
     border-radius: 10px;
+}
+
+/*animation*/
+.logo h2:hover,
+.logo-img img:hover,
+.contact-btn:hover,
+.page-links a:hover {
+    transition: all 1s;
+}
+
+.logo h2:hover,
+.logo-img img:hover,
+.contact-btn:hover,
+.page-links a:hover {
+    scale: 0.9;
+}
+
+.logo h2:hover,
+.page-links a:hover {
+    scale: 0.9;
+    color: orange;
 }
