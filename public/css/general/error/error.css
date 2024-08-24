@@ -1,3 +1,4 @@
+@import url(development.css);
 .error_container {
     display: flex;
     justify-content: center;
@@ -29,6 +30,10 @@
 
 /*img*/
 
+.error_img {
+    width: 40%;
+}
+
 .error_img img{
     border-radius: 20px;
     opacity: 0.8;
@@ -58,3 +63,4 @@ span.error {
     gap: 10px;
     display: flex;
 }
+

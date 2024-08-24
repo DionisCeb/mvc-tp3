@@ -5,16 +5,26 @@ use App\Models\User;
 use App\Models\Privilege;
 use App\Providers\View;
 use App\Providers\Validator;
+use App\Providers\Auth;
 
 class UserController{
+
+    public function __construct(){
+        Auth::session();
+    }
+
     public function create(){
-        $privilege = new Privilege;
-        $privileges = $privilege->select('privilege');
-        View::render('user/create', ['privileges'=>$privileges]);
+        if($_SESSION['privilege_id']==1){
+            $privilege = new Privilege;
+            $privileges = $privilege->select('privilege');
+            View::render('user/create', ['privileges'=>$privileges]);
+        }else{
+            return View::redirect('login');
+        }
     }
 
     public function store($data){
-
+        Auth::session();
         $validator = new Validator;
         $validator->field('name', $data['name'])->min(2)->max(50);
         $validator->field('username', $data['username'])->email()->required()->max(50)->isUnique('User');

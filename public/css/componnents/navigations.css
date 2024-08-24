@@ -1,3 +1,9 @@
+:root {
+    --links--nav--size: 20px;
+    --link--accent-color: purple;
+    --primary-link-color-nav: white;
+}
+
 /*body of nav*/
 nav {
     padding: 20px;
@@ -16,7 +22,7 @@ nav {
 
 .logo h2{
     width: 50%;
-    color: rgb(225, 225, 225);
+    color: var(--primary-link-color-nav);
 }
 .logo-img{
     width: 100px;
@@ -33,25 +39,47 @@ nav {
     gap: 5px;
 }
 
+
+a.nav-btn.active-nav-btn {
+    color: var(--primary-link);
+}
+
 .page-links a {
-    color: white;
+    color: var(--primary-link-color-nav);
     padding: 10px;
     cursor: pointer;
+    font-size: var(--links--nav--size);
 }
 
 /*button contact*/
 .contact-us {
     display: flex;
+    align-items: center;
+    gap: 20px;
 }
+
 .contact-btn {
     padding: 20px;
     background-color: var(--primary-link);
-    color: rgb(48, 48, 48);
+    color: var(--primary-link-color-nav);
+    font-size: var(--links--nav--size);
     font-weight: bold;
     border-radius: 10px;
 }
 
+/*greet user*/
+.greet-user {
+    font-size: var(--links--nav--size);
+    color: var(--primary-link-color-nav);
+}
+
+.greet-user span {
+    font-style: italic;
+    color: var(--link--accent-color);
+}
+
 /*animation*/
+.greet-user:hover,
 .logo h2:hover,
 .logo-img img:hover,
 .contact-btn:hover,
@@ -59,6 +87,7 @@ nav {
     transition: all 1s;
 }
 
+.greet-user:hover,
 .logo h2:hover,
 .logo-img img:hover,
 .contact-btn:hover,
@@ -70,4 +99,60 @@ nav {
 .page-links a:hover {
     scale: 0.9;
     color: orange;
+}
+
+/*dropdown*/
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Trigger (a tag styled as a button) */
+.dropdown-btn {
+    background-color: var(--primary-link);
+    color: white;
+    padding: 14px 20px;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Style for the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--general-color-forms);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style for links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Hover effect for dropdown links */
+
+a.dropdown-btn:hover {
+    color: white;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Change background color on hover for the dropdown trigger */
+.dropdown:hover .dropdown-btn {
+    background-color: orange;
 }
