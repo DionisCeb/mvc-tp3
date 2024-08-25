@@ -6,10 +6,10 @@ Route::get('/home', 'HomeController@index');
 Route::get('', 'HomeController@index');
 
 /*les pages*/
-Route::get('/page/about', 'AboutController@index');
-Route::get('/page/catalog', 'CatalogController@index');
-Route::get('/page/blog', 'BlogController@index');
-Route::get('/page/team', 'TeamController@index');
+Route::get('/page/about', 'PagesController@about');
+Route::get('/page/catalog', 'PagesController@catalog');
+Route::get('/page/blog', 'PagesController@blog');
+Route::get('/page/team', 'PagesController@team');
 
 /*creer une reservation*/
 Route::get('/booking/create', 'BookingController@create');
@@ -38,6 +38,10 @@ Route::post('/login', 'AuthController@store');
 /*logout*/
 Route::get('/logout', 'AuthController@delete');
 
+/* COTE ADMIN GESTION AVEC L'APPLICATION */
+Route::get('/manager/tracker', 'TrackerController@tracker');
+Route::get('/manager/cars', 'ManagerController@cars');
+Route::get('/manager/clients', 'ManagerController@clients');
 
 
 

@@ -7,6 +7,7 @@
                     <h1>Modifier la réservation numéro {{booking.booking_id}} de {{booking.client_name}} {{booking.client_surname}}</h1>
                 </div>
                 <form class="form-reservation" method="post" action="">
+                    {% if session.privilege_id == 1 or session.privilege_id == 2 %}
                     <div>
                         <select name="type" id="cars">
                             <option value="">Choisir le type</option>
@@ -95,6 +96,7 @@
                             <span class="error">{{ errors.check_out_time }}</span>
                         {% endif %}
                     </div>
+                    {% endif %}
                     <div class="name-surname">
                         <input type="text" name="name" placeholder="Nom" value="{{booking.client_name}}" required>
                         {% if errors.name is defined %}

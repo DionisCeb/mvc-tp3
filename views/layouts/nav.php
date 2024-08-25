@@ -8,9 +8,9 @@
         <a class="dropdown-btn">Admin/Manager</a>
         <div class="dropdown-content">
             <a href="{{ base }}/bookings">Réservations</a>
-            <a href="{{ base }}/clients">Clients</a>
-            <a href="{{ base }}/journal">Journal de bord</a>
-            <a href="{{ base }}/cars">Voitures</a>
+            <a href="{{ base }}/manager/clients">Clients</a>
+            <a href="{{ base }}/manager/tracker">Journal de bord</a>
+            <a href="{{ base }}/manager/cars">Voitures</a>
         </div>
     </div>
     {% endif %}

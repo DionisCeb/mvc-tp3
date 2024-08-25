@@ -1,0 +1,126 @@
+.section__newsletter {
+    background-color: var(--small-section-bg);
+    padding: 30px;
+    min-height: 30dvh;
+}
+
+
+.newsletter__img-box--container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+
+/*newsletter container*/
+.newsletter__box {
+    background-color: rgb(207, 207, 207);
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.newsletter__box .newsletter__box--input{
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    outline: none;
+}
+
+
+/*newsletter btn*/
+.newsletter-btn {
+    width: 50%;
+}
+
+
+/*-------------------newsletter box and text container----------------------------*/
+.newsletter__subtitle--title--box {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards
+}
+
+/*newsletter subtitle*/
+.newsletter__subtitle {
+    color: orange;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/*newsletter title*/
+.newsletter__title {
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+/*-------------------newsletter img container-------------------------*/
+.newsletter__img__box {
+    width: 50%;
+    opacity: 0;
+    animation: fadeIn 3s forwards
+}
+
+.newsletter__img__box img {
+    border-radius: 10px;
+    opacity: 80%;
+}
+
+
+/*Responsive*/
+@media only screen and (max-width: 1900px) {
+    .newsletter__img__box {
+        width: 70%;
+    }
+}
+
+/*newsletter title*/
+@media only screen and (max-width: 1500px) {
+    .newsletter__title {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .newsletter__subtitle--title--box {
+        width: 50%;
+    }
+}
+
+/*newsletter title*/
+@media only screen and (max-width: 1050px) {
+    .newsletter__subtitle {
+        font-weight: 20px;
+    }
+    .newsletter__title {
+        font-size: 26px;
+    }
+
+    .newsletter__img-box--container {
+        flex-direction: column;
+    }
+
+    /*newsletter 70%*/
+    .newsletter__subtitle--title--box {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    /*newsletter full size*/
+    .newsletter__subtitle--title--box {
+        width: 100%;
+    }
+
+    /*img full size*/
+    .newsletter__img__box {
+        width: 100%;
+    }
+}
+
+

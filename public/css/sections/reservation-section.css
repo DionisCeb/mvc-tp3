@@ -43,7 +43,8 @@ h1.deals-title {
 
 .container__form-deals {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 50px;
     align-items: center;
 }
@@ -52,11 +53,12 @@ h1.deals-title {
 .deals-box {
     display: flex;
     gap: 30px;
+    width: 50%;
     flex-direction: column;
     justify-content: center;
 }
 .deals-img img {
-    width: 600px;
+    width: 100%;
     opacity: 0.6;
     border-radius: 10px;
 }

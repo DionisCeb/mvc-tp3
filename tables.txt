@@ -47,6 +47,11 @@ CREATE TABLE privilege (
     privilege VARCHAR(50) NOT NULL
 );
 
+INSERT INTO privilege (privilege) VALUES ('Admin');
+INSERT INTO privilege (privilege) VALUES ('Manager');
+INSERT INTO privilege (privilege) VALUES('Employee');
+INSERT INTO privilege (privilege) VALUES('Client');
+
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL,

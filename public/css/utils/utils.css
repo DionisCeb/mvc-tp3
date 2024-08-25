@@ -13,3 +13,19 @@
     flex-direction: column;
     height: 50dvh;
 }
+
+/*flex-center*/
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-center-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*structure*/
+.structure {
+    width: 80%;
+}
