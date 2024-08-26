@@ -22,7 +22,15 @@ class AuthController{
             $checkuser = $user->checkuser($data['username'],$data['password']);
 
             if($checkuser){
-                return View::redirect('bookings');
+                // Retrieve the user's privilege
+                $privilegeId = $_SESSION['privilege_id'];
+
+                // Redirect based on the privilege
+                if (in_array($privilegeId, [1, 2, 3])) {
+                    return View::redirect('bookings');
+                } else {
+                    return View::redirect('booking/create');
+                }
             }else{
                 $errors['message'] = "Please check your credentials";
                 return View::render('auth/index', ['errors'=>$errors, 'user'=>$data]);
@@ -40,4 +48,6 @@ class AuthController{
         session_destroy();
         return View::redirect('login');
     }
+
+    
 }

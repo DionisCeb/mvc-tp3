@@ -61,29 +61,11 @@ section.reservation-result-section {
 }
 
 /*btns*/
-/*reservation-confirmation*/
 
-.header-box_btn.deals-link.return-secondary-btn {
-    background-color: rgb(104, 128, 168);
-}
-
-.header-box_btn.deals-link.return-secondary-btn:hover {
-    background-color: rgb(33, 63, 116);
-}
-
-
-/*edit/delete btns*/
-
-/*edit*/
-a.header-box_btn.deals-link.return-secondary-btn.secondary-edit-btn {
-    background-color: var(--main-acent-color);
-}
-a.header-box_btn.deals-link.return-secondary-btn.secondary-edit-btn:hover {
-    background-color: orange;
-}
-/*delete*/
-a.header-box_btn.deals-link.return-secondary-btn.secondary-delete-btn {
-    background-color: rgb(142, 23, 23);
+.confirmation-links {
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
 }
 
 

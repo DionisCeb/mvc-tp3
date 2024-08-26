@@ -13,14 +13,29 @@ class UserController{
         Auth::session();
     }
 
-    public function create(){
-        if($_SESSION['privilege_id']==1){
-            $privilege = new Privilege;
+    public function create() {
+        // Check if the user is a guest or has the required privilege
+        if ($this->isGuest() || $this->hasRequiredPrivilege()) {
+            // Retrieve privilege data if needed
+            $privilege = new Privilege();
             $privileges = $privilege->select('privilege');
-            View::render('user/create', ['privileges'=>$privileges]);
-        }else{
+
+            // Render the user creation view
+            View::render('user/create', ['privileges' => $privileges]);
+        } else {
+            // Redirect to login if not a guest and does not have the required privilege
             return View::redirect('login');
         }
+    }
+
+    private function isGuest() {
+        // Check if the user is a guest
+        return !isset($_SESSION['fingerPrint']) || $_SESSION['fingerPrint'] !== md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
+    }
+
+    private function hasRequiredPrivilege() {
+        // Check if the user has the required privilege
+        return isset($_SESSION['privilege_id']) && ($_SESSION['privilege_id'] == 1 || $_SESSION['privilege_id'] == 2 || $_SESSION['privilege_id'] == 3);
     }
 
     public function store($data){

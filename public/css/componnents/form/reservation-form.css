@@ -51,3 +51,14 @@
 .check-in input, .check-out input {
     width: 100%;
 }
+
+/*contact*/
+.form-edit-question .btn-box {
+    width: auto;
+}
+
+.form-edit-question {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

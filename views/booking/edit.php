@@ -71,6 +71,7 @@
                             <span class="error">{{ errors.color }}</span>
                         {% endif %}
                     </div>
+                    {% endif %}
                     <div>
                         <div class="check-in">
                             <input type="date" id="check-in-date" name="check_in_date" value="{{booking.check_in_date}}" required>
@@ -96,7 +97,7 @@
                             <span class="error">{{ errors.check_out_time }}</span>
                         {% endif %}
                     </div>
-                    {% endif %}
+                    
                     <div class="name-surname">
                         <input type="text" name="name" placeholder="Nom" value="{{booking.client_name}}" required>
                         {% if errors.name is defined %}
@@ -118,10 +119,23 @@
                         {% endif %}
                     </div>
                     <div class="reserve-submit">
-                        <button type="submit" name="update" class="header-box_btn deals-link return-primary-btn">Sauvegarder</button>
-                        <a href="{{base}}/bookings" class="header-box_btn deals-link return-secondary-btn">Annuler</a>
+                        <button type="submit" name="update" class="btn btn-box details">Sauvegarder</button>
+                        {% if session.privilege_id != 1 and session.privilege_id != 2 %}
+                        <a href="{{base}}/booking/show?id={{booking.booking_id}}" class="btn btn-box details">Annuler</a>
+                        {% endif %}
+
+                        {% if session.privilege_id == 1 or session.privilege_id == 2 or session.privilege_id == 3 %} 
+                            <a href="{{base}}/bookings" class="btn btn-box details">Annuler</a>
+                        {% endif %}
                     </div>
                 </form>
+                {% if session.privilege_id != 1 and session.privilege_id != 2 %}
+                <div class="form-edit-question">
+                    <h3>For other modifications, please call the suport team</h3>
+                    <a href="{{base}}/bookings" class="btn btn-box details">Contactez-nous</a>
+                </div>
+                {% endif %}
+                
             </div>
         </div>
     </section>

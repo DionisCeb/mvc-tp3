@@ -6,6 +6,7 @@ use App\Providers\Validator;
 use App\Models\Booking;
 use App\Models\Client;
 use App\Models\Car;
+use App\Providers\Auth;
 
 class BookingController{
 
@@ -13,14 +14,20 @@ class BookingController{
     /**
      * Fonction pour afficher le formulaire de création d'une réservation
      */
-    public function create(){     
-        // Créer une instance du modèle Booking pour récupérer les données
+    public function create() {
+        // Check if the user is logged in; redirect to /login if not
+        if (!Auth::session()) {
+            return; // Auth::session() already handles redirection
+        }
+
+        // Create an instance of the Booking model to retrieve data
         $queryBuilder = new Booking();
         $listBookings = $queryBuilder->findAll();
-        // Rend la vue de création de réservation avec les scripts nécessaires
-        View::render('booking/create', ['scripts'=> [
-            'select-options.js'
-        ]]);
+
+        // Render the booking creation view with the necessary scripts
+        View::render('booking/create', [
+            'scripts' => ['select-options.js']
+        ]);
     }
 
     /**
@@ -103,7 +110,14 @@ class BookingController{
             ]);
     
             if ($bookingId) {
-                return View::redirect('bookings');
+                $privilegeId = $_SESSION['privilege_id'] ?? null;
+                if ($privilegeId == 1 || $privilegeId == 2 || $privilegeId == 3) {
+                    // Redirect to bookings page with all bookings
+                    return View::redirect('bookings');
+                } else {
+                    // Redirect to bookings page with only the user's booking
+                    return View::redirect('booking/show?id=' . $bookingId);
+                }
             } else {
                 // Afficher un message d'erreur si la réservation n'a pas pu être créée
                 return View::render('booking/create', ['errors' => ["Error: Booking could not be created"], 'booking' => $data]);
