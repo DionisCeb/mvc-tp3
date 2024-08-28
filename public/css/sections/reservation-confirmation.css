@@ -1,13 +1,14 @@
 section.reservation-result-section {
     width: 100%;
-    height: 100vh;
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .confirmation-container {
-    background: rgb(210, 210, 210);
+    background: rgb(255 255 255);
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -36,8 +37,8 @@ section.reservation-result-section {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-    width: 50%;
-    background: #c5c4c4;
+    width: 90%;
+    /*can be a background*/
     padding: 20px;
     border-radius: 10px;
     font-size: 25px;

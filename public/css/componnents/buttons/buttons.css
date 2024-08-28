@@ -1,3 +1,6 @@
+:root {
+    --box-extra-info-btn: orange;
+}
 .btn {
     color: #fafafa;
     padding: 20px;

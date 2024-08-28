@@ -38,7 +38,7 @@
                         {% for privilege in privileges %}
                         <option value="{{privilege.id}}" {% if privilege.id==user.privilege_id %} selected {% endif %}>{{privilege.privilege}}</option>
                         {% endfor %}
-                    </select>
+                </select>
                 {% if errors.privilege_id is defined %}
                     <span class="error">{{ errors.privilege_id }}</span>
                 {% endif %}

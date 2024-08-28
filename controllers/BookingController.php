@@ -19,14 +19,20 @@ class BookingController{
         if (!Auth::session()) {
             return; // Auth::session() already handles redirection
         }
-
-        // Create an instance of the Booking model to retrieve data
-        $queryBuilder = new Booking();
-        $listBookings = $queryBuilder->findAll();
-
-        // Render the booking creation view with the necessary scripts
+    
+        // Create an instance of the Car model to retrieve car data
+        $car = new Car();
+        $carData = $car->findAll(); // Assuming findAll() returns all car records
+    
+        // Create an instance of the Booking model to retrieve booking data (if needed)
+        $booking = new Booking();
+        $listBookings = $booking->findAll(); // Assuming findAll() returns all booking records
+    
+        // Render the booking creation view with the necessary scripts, car data, and booking data
         View::render('booking/create', [
-            'scripts' => ['select-options.js']
+            /* 'scripts' => ['select-options.js'], */
+            'cars' => $carData, // Pass car data to the view
+            'bookings' => $listBookings // Pass booking data to the view (if needed)
         ]);
     }
 
@@ -345,6 +351,115 @@ class BookingController{
             ]);
         }
     }
+
+    public function generatePdf() {
+    
+        // If you want to render the view first, before generating the PDF
+        View::render('booking/generate-pdf', []);
+    
+        $options = new \Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+
+        // Initialize Dompdf
+        $dompdf = new \Dompdf\Dompdf($options);
+
+        // Set paper size and orientation
+        $dompdf->setPaper('A4', 'portrait');
+
+        $html = '
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Booking Confirmation</title>
+            <style>
+                .confirmation-print-box {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    padding: 20px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                    background-color: #f9f9f9;
+                }
+
+                .confirmation-print-box div {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 10px 0;
+                    border-bottom: 1px solid #eee;
+                }
+
+                .confirmation-print-box div:last-child {
+                    border-bottom: none;
+                }
+
+                .confirmation-print-box p {
+                    font-weight: bold;
+                    color: brown;
+                    margin: 0;
+                    font-size: 16px;
+                }
+
+                .confirmation-print-box span {
+                    font-weight: bold;
+                    color: #000;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Booking Confirmation</h1>
+            <div class="confirmation-print-box">
+                <div>
+                    <p>Type: <span>Luxury</span></p>
+                </div>
+                <div>
+                    <p>Make: <span>Mercedes</span></p>
+                </div>
+                <div>
+                    <p>Model: <span>S-Class</span></p>
+                </div>
+                <div>
+                    <p>Color: <span>Black</span></p>
+                </div>
+                <div>
+                    <p>Check In Date: <span>2024-09-01</span></p>
+                </div>
+                <div>
+                    <p>Check In Time: <span>10:00 AM</span></p>
+                </div>
+                <div>
+                    <p>Check Out Date: <span>2024-09-05</span></p>
+                </div>
+                <div>
+                    <p>Check Out Time: <span>02:00 PM</span></p>
+                </div>
+                <div>
+                    <p>Name: <span>John</span></p>
+                </div>
+                <div>
+                    <p>Surname: <span>Doe</span></p>
+                </div>
+                <div>
+                    <p>Email: <span>john.doe@example.com</span></p>
+                </div>
+                <div>
+                    <p>Phone: <span>+1 439 678 9091</span></p>
+                </div>
+            </div>
+        </body>
+        </html>';
+
+        $dompdf->loadHtml($html);
+
+        // Render the PDF
+        $dompdf->render();
+
+        // Output the generated PDF to the browser
+        $dompdf->stream("booking-confirmation.pdf", ["Attachment" => false]);
+    }
+
 }
 
 ?>

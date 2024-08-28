@@ -26,7 +26,7 @@
                     <a href="{{base}}/bookings" class="btn btn-box details">Retour à la liste</a>
                 {% endif %} 
                 <a href="{{base}}/booking/edit?id={{booking.booking_id}}" class="btn btn-box details">Modifier</a>
-                <a href="" class="btn btn-box details">Imprimer</a>
+                <a href="{{base}}/booking/generate-pdf?id={{booking.booking_id}}" class="btn btn-box details">Imprimer</a>
             </div>
         </div>
 {{ include('layouts/footer.php')}}

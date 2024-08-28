@@ -8,6 +8,7 @@
         }
     },
     "require": {
-        "twig/twig": "^3.10"
+        "twig/twig": "^3.10",
+        "dompdf/dompdf": "^3.0"
     }
 }

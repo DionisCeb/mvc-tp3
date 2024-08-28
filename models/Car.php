@@ -74,5 +74,23 @@ class Car extends CRUD{
         return $result !== false ? $result : [];
     }
 
+    public function findAll(): array {
+        // Define the SQL query to retrieve all records from the car table
+        $sql = "SELECT * FROM $this->table";
+        
+        // Prepare the SQL statement
+        $stmt = $this->prepare($sql);
+        
+        // Execute the statement
+        $stmt->execute();
+        
+        // Fetch all results as an associative array
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        // Return the results
+        return $results;
+    }
+    
+
     
 }

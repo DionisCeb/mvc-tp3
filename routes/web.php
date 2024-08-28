@@ -27,6 +27,10 @@ Route::post('/booking/edit', 'BookingController@update');
 /*supprimer une reservation*/
 Route::post('/booking/delete', 'BookingController@delete');
 
+/*compliller PDF*/
+Route::get('/booking/generate-pdf', 'BookingController@generatePdf');
+
+
 /* USER CREATE */
 Route::get('/user/create', 'UserController@create');
 Route::post('/user/create', 'UserController@store');
