@@ -7,6 +7,7 @@ use App\Models\Booking;
 use App\Models\Client;
 use App\Models\Car;
 use App\Providers\Auth;
+use Dompdf\Dompdf;
 
 class BookingController{
 
@@ -353,112 +354,46 @@ class BookingController{
     }
 
     public function generatePdf() {
+        if (isset($_GET['id']) && $_GET['id'] != null) {
+            // Create an instance of the Booking model to fetch the data
+            $queryBuilder = new Booking();
+            $bookingData = $queryBuilder->findOne((int)$_GET['id']);
     
-        // If you want to render the view first, before generating the PDF
-        View::render('booking/generate-pdf', []);
+            if ($bookingData) {
+                // Initialize Dompdf
+                $dompdf = new Dompdf();
+                $dompdf->setPaper('A4', 'portrait');
     
-        $options = new \Dompdf\Options();
-        $options->setIsRemoteEnabled(true);
-
-        // Initialize Dompdf
-        $dompdf = new \Dompdf\Dompdf($options);
-
-        // Set paper size and orientation
-        $dompdf->setPaper('A4', 'portrait');
-
-        $html = '
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Booking Confirmation</title>
-            <style>
-                .confirmation-print-box {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 10px;
-                    padding: 20px;
-                    border: 1px solid #ddd;
-                    border-radius: 5px;
-                    background-color: #f9f9f9;
-                }
-
-                .confirmation-print-box div {
-                    display: flex;
-                    justify-content: space-between;
-                    padding: 10px 0;
-                    border-bottom: 1px solid #eee;
-                }
-
-                .confirmation-print-box div:last-child {
-                    border-bottom: none;
-                }
-
-                .confirmation-print-box p {
-                    font-weight: bold;
-                    color: brown;
-                    margin: 0;
-                    font-size: 16px;
-                }
-
-                .confirmation-print-box span {
-                    font-weight: bold;
-                    color: #000;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Booking Confirmation</h1>
-            <div class="confirmation-print-box">
-                <div>
-                    <p>Type: <span>Luxury</span></p>
-                </div>
-                <div>
-                    <p>Make: <span>Mercedes</span></p>
-                </div>
-                <div>
-                    <p>Model: <span>S-Class</span></p>
-                </div>
-                <div>
-                    <p>Color: <span>Black</span></p>
-                </div>
-                <div>
-                    <p>Check In Date: <span>2024-09-01</span></p>
-                </div>
-                <div>
-                    <p>Check In Time: <span>10:00 AM</span></p>
-                </div>
-                <div>
-                    <p>Check Out Date: <span>2024-09-05</span></p>
-                </div>
-                <div>
-                    <p>Check Out Time: <span>02:00 PM</span></p>
-                </div>
-                <div>
-                    <p>Name: <span>John</span></p>
-                </div>
-                <div>
-                    <p>Surname: <span>Doe</span></p>
-                </div>
-                <div>
-                    <p>Email: <span>john.doe@example.com</span></p>
-                </div>
-                <div>
-                    <p>Phone: <span>+1 439 678 9091</span></p>
-                </div>
-            </div>
-        </body>
-        </html>';
-
-        $dompdf->loadHtml($html);
-
-        // Render the PDF
-        $dompdf->render();
-
-        // Output the generated PDF to the browser
-        $dompdf->stream("booking-confirmation.pdf", ["Attachment" => false]);
+                // Load HTML template from file
+                $templatePath = __DIR__ . '/../views/booking/booking-template.php';
+                $htmlTemplate = file_get_contents($templatePath);
+    
+                // Replace placeholders with actual data
+                $html = str_replace(
+                    ['{{booking_id}}', '{{client_name}}', '{{client_surname}}', '{{client_email}}', '{{client_phone}}', '{{car_make}}', '{{car_model}}', '{{car_color}}', '{{check_in_date}}', '{{check_in_time}}', '{{check_out_date}}', '{{check_out_time}}'],
+                    [htmlspecialchars($bookingData['booking_id']), htmlspecialchars($bookingData['client_name']), htmlspecialchars($bookingData['client_surname']), htmlspecialchars($bookingData['client_email']), htmlspecialchars($bookingData['client_phone']), htmlspecialchars($bookingData['car_make']), htmlspecialchars($bookingData['car_model']), htmlspecialchars($bookingData['car_color']), htmlspecialchars($bookingData['check_in_date']), htmlspecialchars($bookingData['check_in_time']), htmlspecialchars($bookingData['check_out_date']), htmlspecialchars($bookingData['check_out_time'])],
+                    $htmlTemplate
+                );
+    
+                // Load HTML content into Dompdf
+                $dompdf->loadHtml($html);
+    
+                // Render the PDF
+                $dompdf->render();
+    
+                // Stream the generated PDF
+                $dompdf->stream("booking_confirmation.pdf", array("Attachment" => 0));
+            } else {
+                // Handle case where booking data is not found
+                echo "Booking not found.";
+            }
+        } else {
+            // Handle case where ID is missing
+            echo "No booking ID provided.";
+        }
     }
+    
+    
 
 }
 
