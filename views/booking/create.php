@@ -4,7 +4,7 @@
             <div class="reservation-boxes-container">             
                     <div class="container__form-deals">
                         <div class="form-box">
-                        <form class="form-reservation" action="" method="POST">
+                        <form class="form-reservation" action="{{ base }}/booking/create" method="POST">
                             <div>
                                 <select name="type" id="type">
                                 <option value="">Choisir le type</option>  

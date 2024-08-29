@@ -8,6 +8,8 @@ use App\Models\Client;
 use App\Models\Car;
 use App\Providers\Auth;
 use Dompdf\Dompdf;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class BookingController{
 
@@ -115,8 +117,9 @@ class BookingController{
                 'check_out_date' => $data['check_out_date'],
                 'check_out_time' => $data['check_out_time'],
             ]);
-    
             if ($bookingId) {
+                // Call sendConfirmationEmail after booking is created
+                $this->sendConfirmationEmail($data['email'], $data['name'], $data['surname'], $data['phone'], $data['type'], $data['make'], $data['model'], $data['color'], $data['check_in_date'], $data['check_in_time'], $data['check_out_date'], $data['check_out_time']);
                 $privilegeId = $_SESSION['privilege_id'] ?? null;
                 if ($privilegeId == 1 || $privilegeId == 2 || $privilegeId == 3) {
                     // Redirect to bookings page with all bookings
@@ -133,6 +136,56 @@ class BookingController{
             // Afficher les erreurs de validation
             $errors = $validator->getErrors();
             return View::render('booking/create', ['errors' => $errors, 'booking' => $data]);
+        }
+
+    }
+
+    // Method to send confirmation email
+    private function sendConfirmationEmail($clientEmail, $name, $surname, $phone, $type, $make, $model, $color, $checkInDate, $checkInTime, $checkOutDate, $checkOutTime) {
+
+        $mail = new PHPMailer(true);
+        
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->SMTPAuth = true;
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = 587;
+
+            // SMTP credentials
+            $mail->Username = 'luxurycarbookingg@gmail.com'; // Gmail address
+            $mail->Password = 'iotq gwaw tles ytlt'; 
+
+            // Recipients
+            $mail->setFrom('luxurycarbookingg@gmail.com', 'Deluuxe Car Booking');
+            $mail->addAddress($clientEmail); // Add a recipient
+
+            // Content
+            $mail->isHTML(true); // Set email format to HTML
+            $mail->Subject = 'Booking Confirmation';
+            $mail->Body    = "
+            <h1>Booking Confirmation</h1>
+            <p>Dear $name $surname,</p>
+            <p>Thank you for creating a booking with us. Here are the details:</p>
+            <ul>
+                <li><strong>Phone:</strong> $phone</li>
+                <li><strong>Car Type:</strong> $type</li>
+                <li><strong>Car Make:</strong> $make</li>
+                <li><strong>Car Model:</strong> $model</li>
+                <li><strong>Car Color:</strong> $color</li>
+                <li><strong>Check-In Date:</strong> $checkInDate</li>
+                <li><strong>Check-In Time:</strong> $checkInTime</li>
+                <li><strong>Check-Out Date:</strong> $checkOutDate</li>
+                <li><strong>Check-Out Time:</strong> $checkOutTime</li>
+            </ul>
+            <p>We will process your booking shortly.</p>
+            <p>Best regards,<br>Deluxe Location</p>
+        ";
+
+            $mail->send();
+        } catch (Exception $e) {
+            var_dump("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
         }
     }
     
