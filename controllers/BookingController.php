@@ -164,7 +164,7 @@ class BookingController{
             // Content
             $mail->isHTML(true); // Set email format to HTML
             $mail->Subject = 'Booking Confirmation';
-            $mail->Body    = "
+            $mail->Body = "
             <h1>Booking Confirmation</h1>
             <p>Dear $name $surname,</p>
             <p>Thank you for creating a booking with us. Here are the details:</p>
