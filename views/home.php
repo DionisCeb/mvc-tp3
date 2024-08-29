@@ -1,4 +1,4 @@
-{{ include('layouts/header.php', {title:'Home'})}}
+{{ include('layouts/header.php', {title:'Accueil'})}}
     <header>
         <div class="structure">
             <div class="header-section">
@@ -100,10 +100,13 @@
                     <div class="newsletter__title">
                         <h1>Recevez les actualités en vous abonnant à notre infolettre</h1>
                     </div>
-                    <div class="newsletter__box">
-                        <input type="text" class="newsletter__box--input" placeholder="Entrez votre email...">
-                        <button class="btn btn-box newsletter-btn">Soumettre</button>
-                    </div>
+                    <form id="newsletterForm" method="post" action="{{base}}/newsletter/subscribe">
+                        <div class="newsletter__box" style="display: flex; gap: 5px;">
+                            <input type="email" name="email" class="newsletter__box--input" id="newsletter-email" placeholder="Enter your email..." required>
+                            <button type="submit" class="btn btn-box newsletter-btn" id="newsletter-btn">Subscribe</button>
+                        </div>
+                    </form>
+
                 </div>
                 <div class="newsletter__img__box">
                     <img src="{{asset}}img/gallery/mercedes.jpg" alt="">

@@ -8,7 +8,7 @@ class HomeController{
         
         View::render('home', ['scripts'=> [
             'scrolling.js',
-            'select-options.js'
+            'emailsender.js',
         ]]);
     }
 

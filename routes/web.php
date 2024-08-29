@@ -4,6 +4,10 @@ use App\Routes\Route;
 
 Route::get('/home', 'HomeController@index');
 Route::get('', 'HomeController@index');
+/**
+ * Abonnez a newsletter
+ */
+Route::post('/newsletter/subscribe', 'NewsletterController@subscribe');
 
 /*les pages*/
 Route::get('/page/about', 'PagesController@about');
