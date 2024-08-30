@@ -27,3 +27,9 @@
     background-color: var(--box-extra-info-btn);
     transform: scale(0.95);
 }
+
+
+/*Disable the button*/
+.disabled-btn {
+    pointer-events: none;
+}

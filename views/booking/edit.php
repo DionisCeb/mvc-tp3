@@ -9,70 +9,6 @@
                 <form class="form-reservation" method="post" action="">
                     {% if session.privilege_id == 1 or session.privilege_id == 2 %}
                     <div>
-                        <select name="type" id="cars">
-                            <option value="">Choisir le type</option>
-                            <option value="compact" {% if booking.car_type == 'compact' %}selected{% endif %}>Compacte</option>
-                            <option value="sport" {% if booking.car_type == 'sport' %}selected{% endif %}>Sport</option>
-                            <option value="suv" {% if booking.car_type == 'suv' %}selected{% endif %}>SUV</option>
-                            <option value="luxury" {% if booking.car_type == 'luxury' %}selected{% endif %}>Voitures de luxe</option>
-                            <option value="sedan" {% if booking.car_type == 'sedan' %}selected{% endif %}>Sedan</option>
-                        </select>
-                        {% if errors.type is defined %}
-                            <span class="error">{{ errors.type }}</span>
-                        {% endif %}
-                    </div>
-
-                    <div>
-                        <select name="make" id="make">
-                            <option value="">Choisir la marque</option>
-                            <option value="audi" {% if booking.car_make == 'audi' %}selected{% endif %}>Audi</option>
-                            <option value="mercedes" {% if booking.car_make == 'mercedes' %}selected{% endif %}>Mercedes</option>
-                            <option value="toyota" {% if booking.car_make == 'toyota' %}selected{% endif %}>Toyota</option>
-                        </select>
-                        {% if errors.make is defined %}
-                            <span class="error">{{ errors.make }}</span>
-                        {% endif %}
-                    </div>
-
-
-                    <div>
-                        <select name="model" id="model">
-                            <option value="">Choisir le modèle</option>
-                            <option value="audi A3" {% if booking.car_model == 'audi A3' %}selected{% endif %}>A3</option>
-                            <option value="audi A4" {% if booking.car_model == 'audi A4' %}selected{% endif %}>A4</option>
-                            <option value="audi R8" {% if booking.car_model == 'audi R8' %}selected{% endif %}>R8</option>
-                            <option value="audi Q8" {% if booking.car_model == 'audi Q8' %}selected{% endif %}>R8</option>
-                            <option value="mercedes C-class" {% if booking.car_model == 'mercedes C-class' %}selected{% endif %}>C-class</option>
-                            <option value="mercedes A-class" {% if booking.car_model == 'mercedes A-class' %}selected{% endif %}>A-class</option>
-                            <option value="mercedes G-class" {% if booking.car_model == 'mercedes G-class' %}selected{% endif %}>G-class</option>
-                            <option value="mercedes S-class" {% if booking.car_model == 'mercedes S-class' %}selected{% endif %}>S-class</option>
-                            <option value="mercedes AMG-GT" {% if booking.car_model == 'mercedes AMG-GT' %}selected{% endif %}>AMG-GT-class</option>
-                            <option value="toyota Supra" {% if booking.car_model == 'toyota Supra' %}selected{% endif %}>Supra</option>
-                            <option value="toyota Camry" {% if booking.car_model == 'toyota Camry' %}selected{% endif %}>Camry</option>
-                            <option value="toyota Corolla" {% if booking.car_model == 'toyota Corolla' %}selected{% endif %}>Corolla</option>
-                            <option value="toyota Land Cruiser" {% if booking.car_model == 'toyota Camry' %}selected{% endif %}>Land Cruiser</option>
-                            <option value="toyota Tacoma" {% if booking.car_model == 'toyota Tacoma' %}selected{% endif %}>Tacoma</option>
-                            <option value="toyota Tundra" {% if booking.car_model == 'toyota Tundra' %}selected{% endif %}>Tundra</option>
-                        </select>
-                        {% if errors.model is defined %}
-                            <span class="error">{{ errors.model }}</span>
-                        {% endif %}
-                    </div>
-
-                    <div>
-                        <select name="color" id="color" class="{% if errors.color is defined %}error{% endif %}">
-                            <option value="">Choisir la couleur</option>
-                            <option value="blanche" {% if booking.car_color == 'blanche' %}selected{% endif %}>Blanche</option>
-                            <option value="gris" {% if booking.car_color == 'gris' %}selected{% endif %}>Grise</option>
-                            <option value="noire" {% if booking.car_color == 'noire' %}selected{% endif %}>Noire</option>
-                            <option value="bleue" {% if booking.car_color == 'bleue' %}selected{% endif %}>Bleue</option>
-                        </select>
-                        {% if errors.color is defined %}
-                            <span class="error">{{ errors.color }}</span>
-                        {% endif %}
-                    </div>
-                    {% endif %}
-                    <div>
                         <div class="check-in">
                             <input type="date" id="check-in-date" name="check_in_date" value="{{booking.check_in_date}}" required>
                             <input type="time" id="check-in-time" name="check_in_time" value="{{booking.check_in_time}}" required>
@@ -97,6 +33,56 @@
                             <span class="error">{{ errors.check_out_time }}</span>
                         {% endif %}
                     </div>
+
+                    <div>
+                        <select name="type" id="type">
+                            <option value="">Choisir le type</option>
+                            {% for type in types %}
+                                <option value="{{ type }}" {% if booking.car_type == type %}selected{% endif %}>{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if errors.type is defined %}
+                            <span class="error">{{ errors.type }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <select name="make" id="make">
+                           {% for make in makes %}
+                                <option value="{{ make }}" {% if booking.car_make == make %}selected{% endif %}>{{ make }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if errors.make is defined %}
+                            <span class="error">{{ errors.make }}</span>
+                        {% endif %}
+                    </div>
+
+
+                    <div>
+                        <select name="model" id="model">
+                            <option value="">Choisir le modèle</option>
+                            {% for model in models %}
+                                <option value="{{ model }}" {% if booking.car_model == model %}selected{% endif %}>{{ model }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if errors.model is defined %}
+                            <span class="error">{{ errors.model }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        <select name="color" id="color" class="{% if errors.color is defined %}error{% endif %}">
+                            <option value="">Choisir la couleur</option>
+                            {% for color in colors %}
+                                <option value="{{ color }}" {% if booking.car_color == color %}selected{% endif %}>{{ color }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if errors.color is defined %}
+                            <span class="error">{{ errors.color }}</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
                     
                     <div class="name-surname">
                         <input type="text" name="name" placeholder="Nom" value="{{booking.client_name}}" required>

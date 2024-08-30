@@ -6,6 +6,32 @@
                         <div class="form-box">
                         <form class="form-reservation" action="{{ base }}/booking/create" method="POST">
                             <div>
+                                <div class="check-in">
+                                    <input type="date" id="check-in-date" name="check_in_date">
+                                    <input type="time" id="check-in-time" name="check_in_time">
+                                </div>
+                                {% if errors.check_in_date is defined %}
+                                    <span class="error">{{ errors.check_in_date }}</span>
+                                {% endif %}
+
+                                {% if errors.check_in_time is defined %}
+                                    <span class="error">{{ errors.check_in_time }}</span>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <div class="check-out">
+                                    <input type="date" id="check-out-date" name="check_out_date">
+                                    <input type="time" id="check-out-time" name="check_out_time">
+                                </div>
+                                {% if errors.check_out_date is defined %}
+                                    <span class="error">{{ errors.check_out_date }}</span>
+                                {% endif %}
+
+                                {% if errors.check_out_time is defined %}
+                                    <span class="error">{{ errors.check_out_time }}</span>
+                                {% endif %}
+                            </div>
+                            <div>
                                 <select name="type" id="type">
                                 <option value="">Choisir le type</option>  
                                 {% for car in cars %}
@@ -49,36 +75,11 @@
                                     <span class="error">{{ errors.color }}</span>
                                 {% endif %}
                             </div>
-                            <div>
-                                <div class="check-in">
-                                    <input type="date" id="check-in-date" name="check_in_date">
-                                    <input type="time" id="check-in-time" name="check_in_time">
-                                </div>
-                                {% if errors.check_in_date is defined %}
-                                    <span class="error">{{ errors.check_in_date }}</span>
-                                {% endif %}
-
-                                {% if errors.check_in_time is defined %}
-                                    <span class="error">{{ errors.check_in_time }}</span>
-                                {% endif %}
-                            </div>
-                            <div>
-                                <div class="check-out">
-                                    <input type="date" id="check-out" name="check_out_date">
-                                    <input type="time" id="check-out-time" name="check_out_time">
-                                </div>
-                                {% if errors.check_out_date is defined %}
-                                    <span class="error">{{ errors.check_out_date }}</span>
-                                {% endif %}
-
-                                {% if errors.check_out_time is defined %}
-                                    <span class="error">{{ errors.check_out_time }}</span>
-                                {% endif %}
-                            </div>
+                            
                             <div>
                                 <div class="name-surname">
-                                    <input type="text" name="name" placeholder="Nom">
-                                    <input type="text" name="surname" placeholder="Prénom">
+                                    <input type="text" name="name" placeholder="Nom" id="name">
+                                    <input type="text" name="surname" placeholder="Prénom" id="surname">
                                 </div>
                                 {% if errors.name is defined %}
                                     <span class="error">{{ errors.name }}</span>
@@ -90,8 +91,8 @@
                             </div>
                             <div>
                                 <div class="email-phone">
-                                    <input type="email" name="email" placeholder="email@gmail.com">
-                                    <input type="tel" name="phone" placeholder="1 439 678 9091">                                   
+                                    <input type="email" name="email" placeholder="email@gmail.com" id="email">
+                                    <input type="tel" name="phone" placeholder="1 439 678 9091" id="phone">                                   
                                 </div>
                                     <div class="error-div">
                                         {% if errors.email is defined %}
@@ -103,7 +104,7 @@
                                     </div>
                             </div>
                             <div class="reserve-submit">
-                                <input type="submit" name="submit" value="Réserver">
+                                <input type="submit" name="submit" value="Réserver" id="submit-button">
                             </div>
                         </form>
 

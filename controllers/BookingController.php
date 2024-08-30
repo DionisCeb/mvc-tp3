@@ -33,7 +33,7 @@ class BookingController{
     
         // Render the booking creation view with the necessary scripts, car data, and booking data
         View::render('booking/create', [
-            /* 'scripts' => ['select-options.js'], */
+            'scripts' => ['select-options.js'],
             'cars' => $carData, // Pass car data to the view
             'bookings' => $listBookings // Pass booking data to the view (if needed)
         ]);
@@ -238,19 +238,36 @@ class BookingController{
             // Créer une instance du modèle Booking pour récupérer les données
             $queryBuilder = new Booking();
             $bookingData = $queryBuilder->findOne((int)$data['id']);
-
+    
             if($bookingData){
+                // Créer une instance du modèle Car pour récupérer les données de voiture
+                $car = new Car();
+                $carData = $car->findAll(); // Assuming this returns all car records
+    
+                // Extract unique makes, models, and colors from the car data
+                $types = array_unique(array_column($carData, 'type'));
+                $makes = array_unique(array_column($carData, 'make'));
+                $models = array_unique(array_column($carData, 'model'));
+                $colors = array_unique(array_column($carData, 'color'));
+    
                 // Retourner la vue du formulaire d'édition avec les données de la réservation
-                return View::render('booking/edit', ['booking'=>$bookingData]);
+                return View::render('booking/edit', [
+                    'booking' => $bookingData,
+                    'types' => $types,
+                    'makes' => $makes,
+                    'models' => $models,
+                    'colors' => $colors,
+                ]);
             } else {
                 // Afficher une erreur si la réservation n'est pas trouvée
                 return View::render('error/error');
             }       
         }else{
-            //Affiche une erreur si l'identifiant de la réservation est manquant
+            // Affiche une erreur si l'identifiant de la réservation est manquant
             return View::render('error/error', ['msg'=>'Client not found!']);
         }    
     }
+    
 
 
     /**
