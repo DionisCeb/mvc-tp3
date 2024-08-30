@@ -2,15 +2,16 @@
 namespace App\Controllers;
 
 use App\Providers\View;
-use App\Models\TrackerActivity;
+use App\Models\Activity;
 
 class TrackerActivityController {
     public function activity() {
-        $activities = TrackerActivity::getAllActivities();
+        $activityModel = new Activity();
+        $activities = $activityModel->getAllActivities();
+
         View::render('/manager/activity', [
-            'title' => 'Le Journal de bord',
-            'activities' => $activities,
-            'scripts' => ['active-link.js']
+            'scripts'=> ['active-link.js'],
+            'activities' => $activities
         ]);
     }
 }

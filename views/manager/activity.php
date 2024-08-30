@@ -1,7 +1,7 @@
     {{ include('layouts/header.php', {title:'Le Journal de bord'})}}
     <section class="admin-interface">
         <div class="admin-container">
-            <h1>{{title}}</h1>
+            <h1>Le Journal de bord</h1>
             <table>
                 <thead>
                     <tr>
