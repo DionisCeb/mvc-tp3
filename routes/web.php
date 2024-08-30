@@ -47,7 +47,7 @@ Route::post('/login', 'AuthController@store');
 Route::get('/logout', 'AuthController@delete');
 
 /* COTE ADMIN GESTION AVEC L'APPLICATION */
-Route::get('/manager/tracker', 'TrackerController@tracker');
+Route::get('/manager/activity', 'TrackerActivityController@activity');
 Route::get('/manager/cars', 'ManagerController@cars');
 Route::get('/manager/clients', 'ManagerController@clients');
 

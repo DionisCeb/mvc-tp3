@@ -25,71 +25,6 @@ document.getElementById('check-in-date').addEventListener('focus', disablePastDa
 document.getElementById('check-in-date').addEventListener('change', updateCheckOutMinDate);
 document.addEventListener('DOMContentLoaded', initializeDatePickers);
 
-document.addEventListener('DOMContentLoaded', function () {
-
-    
-
-
-    // Function to get unique options from a select element
-    function getUniqueOptions(selectElement) {
-        const options = selectElement.options;
-        const uniqueOptions = [];
-
-        // Loop through options and store unique values
-        for (let i = 1; i < options.length; i++) { // Skip the default option at index 0
-            const value = options[i].value;
-            const text = options[i].text;
-
-            // Check if the value is already in the uniqueOptions array
-            let isUnique = true;
-            uniqueOptions.forEach(option => {
-                if (option.value === value) {
-                    isUnique = false;
-                }
-            });
-
-            // Add new unique option
-            if (isUnique) {
-                uniqueOptions.push({ value: value, text: text });
-            }
-        }
-
-        return uniqueOptions;
-    }
-
-    // Function to update a select element with unique options
-    function updateSelectOptions(selectElement, uniqueOptions) {
-        // Clear existing options except for the default option
-        while (selectElement.options.length > 1) {
-            selectElement.remove(1);
-        }
-
-        // Add unique options
-        uniqueOptions.forEach(option => {
-            const newOption = new Option(option.text, option.value);
-            selectElement.add(newOption);
-        });
-    }
-
-    // Get the select elements
-    const typeSelect = document.getElementById('type');
-    const makeSelect = document.getElementById('make');
-    const modelSelect = document.getElementById('model');
-    const colorSelect = document.getElementById('color');
-
-    // Get unique options for each select element
-    const uniqueTypeOptions = getUniqueOptions(typeSelect);
-    const uniqueMakeOptions = getUniqueOptions(makeSelect);
-    const uniqueModelOptions = getUniqueOptions(modelSelect);
-    const uniqueColorOptions = getUniqueOptions(colorSelect);
-
-    // Update select elements with unique options
-    updateSelectOptions(typeSelect, uniqueTypeOptions);
-    updateSelectOptions(makeSelect, uniqueMakeOptions);
-    updateSelectOptions(modelSelect, uniqueModelOptions);
-    updateSelectOptions(colorSelect, uniqueColorOptions);
-});
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -148,3 +83,86 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial validation on page load
     validateForm();
 });
+
+// Selections:
+const typeSelect = document.getElementById('type');
+const makeSelect = document.getElementById('make');
+const modelSelect = document.getElementById('model');
+const colorSelect = document.getElementById('color');
+
+// Event listeners for type, make, and model changes
+typeSelect.addEventListener('change', updateMakeOptions);
+makeSelect.addEventListener('change', updateModelOptions);
+modelSelect.addEventListener('change', updateColorOptions);
+
+function updateMakeOptions() {
+    const selectedType = typeSelect.value;
+
+    // Filter makes based on the selected type
+    for (let i = 0; i < makeSelect.options.length; i++) {
+        const option = makeSelect.options[i];
+        const optionType = option.getAttribute('data-type');
+
+        if (optionType === selectedType || selectedType === '') {
+            option.style.display = '';
+        } else {
+            option.style.display = 'none';
+        }
+    }
+
+    // Reset the make and model selections
+    makeSelect.selectedIndex = 0;
+    updateModelOptions();
+}
+
+function updateModelOptions() {
+    const selectedType = typeSelect.value;
+    const selectedMake = makeSelect.value;
+
+    // Filter models based on the selected type and make
+    for (let i = 0; i < modelSelect.options.length; i++) {
+        const option = modelSelect.options[i];
+        const optionMake = option.getAttribute('data-make');
+        const optionType = option.getAttribute('data-type');
+
+        if ((optionMake === selectedMake || selectedMake === '') &&
+            (optionType === selectedType || selectedType === '')) {
+            option.style.display = '';
+        } else {
+            option.style.display = 'none';
+        }
+    }
+
+    // Reset the model and color selections
+    modelSelect.selectedIndex = 0;
+    updateColorOptions();
+}
+
+function updateColorOptions() {
+    const selectedType = typeSelect.value;
+    const selectedMake = makeSelect.value;
+    const selectedModel = modelSelect.value;
+
+    // Filter colors based on the selected type, make, and model
+    for (let i = 0; i < colorSelect.options.length; i++) {
+        const option = colorSelect.options[i];
+        const optionMake = option.getAttribute('data-make');
+        const optionType = option.getAttribute('data-type');
+        const optionModel = option.getAttribute('data-model');
+
+        if ((optionMake === selectedMake || selectedMake === '') &&
+            (optionType === selectedType || selectedType === '') &&
+            (optionModel === selectedModel || selectedModel === '')) {
+            option.style.display = '';
+        } else {
+            option.style.display = 'none';
+        }
+    }
+
+    // Reset the color selection
+    colorSelect.selectedIndex = 0;
+}
+
+
+
+

@@ -9,7 +9,7 @@
         <div class="dropdown-content">
             <a href="{{ base }}/bookings">Réservations</a>
             <a href="{{ base }}/manager/clients">Clients</a>
-            <a href="{{ base }}/manager/tracker">Journal de bord</a>
+            <a href="{{ base }}/manager/activity">Journal de bord</a>
             <a href="{{ base }}/manager/cars">Voitures</a>
         </div>
     </div>

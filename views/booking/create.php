@@ -31,44 +31,51 @@
                                     <span class="error">{{ errors.check_out_time }}</span>
                                 {% endif %}
                             </div>
+                             <!-- Car Type -->
                             <div>
                                 <select name="type" id="type">
-                                <option value="">Choisir le type</option>  
-                                {% for car in cars %}
-                                    <option value="{{ car.type }}">{{ car.type }}</option>
-                                {% endfor %}
+                                    <option value="">Choisir le type</option>
+                                    {% for car in cars %}
+                                        <option value="{{ car.type }}">{{ car.type }}</option>
+                                    {% endfor %}
                                 </select>
                                 {% if errors.type is defined %}
                                     <span class="error">{{ errors.type }}</span>
                                 {% endif %}
                             </div>
+
+                            <!-- Car Make -->
                             <div>
                                 <select name="make" id="make">
                                     <option value="">Choisir la marque</option>
-                                    {% for car in cars %} 
-                                        <option value="{{ car.make }}">{{ car.make }}</option>
+                                    {% for car in cars %}
+                                        <option value="{{ car.make }}" data-type="{{ car.type }}">{{ car.make }}</option>
                                     {% endfor %}
                                 </select>
                                 {% if errors.make is defined %}
                                     <span class="error">{{ errors.make }}</span>
                                 {% endif %}
                             </div>
+
+                            <!-- Car Model -->
                             <div>
                                 <select name="model" id="model">
                                     <option value="">Choisir le modèle</option>
                                     {% for car in cars %}
-                                        <option value="{{ car.model }}">{{ car.model }}</option>
+                                        <option value="{{ car.model }}" data-make="{{ car.make }}" data-type="{{ car.type }}">{{ car.model }}</option>
                                     {% endfor %}
                                 </select>
                                 {% if errors.model is defined %}
                                     <span class="error">{{ errors.model }}</span>
                                 {% endif %}
                             </div>
+
+                            <!-- Car Color -->
                             <div>
                                 <select name="color" id="color">
                                     <option value="">Choisir la couleur</option>
                                     {% for car in cars %}
-                                        <option value="{{ car.color }}">{{ car.color }}</option>
+                                        <option value="{{ car.color }}" data-model="{{ car.model }}" data-make="{{ car.make }}" data-type="{{ car.type }}">{{ car.color }}</option>
                                     {% endfor %}
                                 </select>
                                 {% if errors.color is defined %}
