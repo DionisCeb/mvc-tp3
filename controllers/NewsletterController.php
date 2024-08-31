@@ -3,6 +3,9 @@ namespace App\Controllers;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+/**
+ * Contrôleur pour envoyer un e-mail à l'e-mail abonné à la newsletter
+ */
 class NewsletterController {
     public function subscribe() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,23 +19,23 @@ class NewsletterController {
             $mail = new PHPMailer(true);
 
             try {
-                // Server settings
+                // Paramètres du serveur
                 $mail->isSMTP();
                 $mail->SMTPAuth = true;
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
-                // SMTP credentials
+                // Informations d'identification SMTP
                 $mail->Username = 'luxurycarbookingg@gmail.com'; // Gmail address
                 $mail->Password = 'iotq gwaw tles ytlt'; 
 
-                //Recipents:
-                // Sender and recipient
+                //Destinataires :
+                // Expéditeur et destinataire
                 $mail->setFrom('luxurycarbookingg@gmail.com', 'Luxury Car Booking');
                 $mail->addAddress($email);
 
-                // Content
+                // Contenu
                 $mail->isHTML(true);
                 $mail->Subject = 'Thank you for your subscription';
                 $mail->Body    = 'Here is your Booking at Deluuxe Location. Thank you for subscribing to our newsletter!';
@@ -44,7 +47,7 @@ class NewsletterController {
                 $mail->send();
 
                 /**
-                 * Redirect the user to home page after submiting the newsletter form
+                 * Rediriger l'utilisateur vers la page d'accueil après avoir soumis le formulaire de newsletter
                  */
                 $baseURL = BASE;
                 header("Location: {$baseURL}/home");

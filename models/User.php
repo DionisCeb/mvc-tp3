@@ -17,7 +17,7 @@ class User extends CRUD{
     }
 
     /**
-     * Function to check if a user exists:
+     * Fonction pour vérifier si un utilisateur existe :
      */
     public function checkuser($username, $password){
         $user = $this->unique('username', $username);
@@ -42,21 +42,25 @@ class User extends CRUD{
 
     }
 
+    /**
+     * Fonction pour détecter et renvoyer l'ip-
+     */
     private function getClientIp() {
-        // Check if the IP address is passed via a proxy
+        // Vérifiez si l'adresse IP est transmise via un proxy
         if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            // The HTTP_X_FORWARDED_FOR header contains a list of IP addresses
+            // L'en-tête HTTP_X_FORWARDED_FOR contient une liste d'adresses IP
             $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-            $ip = trim($ipAddresses[0]); // Return the first IP address in the list
+            // Renvoie la première adresse IP de la liste
+            $ip = trim($ipAddresses[0]);
         } elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-            // HTTP_CLIENT_IP is set when using a shared internet connection
+            // HTTP_CLIENT_IP est défini lors de l'utilisation d'une connexion Internet partagée
             $ip = $_SERVER['HTTP_CLIENT_IP'];
         } else {
-            // Fallback to REMOTE_ADDR if no proxy or client IP headers are set
+            // Retour à REMOTE_ADDR si aucun en-tête IP de proxy ou de client n'est défini
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         if ($ip === '::1') {
-            $ip = '127.0.0.1'; // Optionally, convert ::1 to 127.0.0.1
+            $ip = '127.0.0.1';
         }
         return $ip;
     }

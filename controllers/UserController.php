@@ -14,30 +14,34 @@ class UserController{
     }
 
     public function create() {
-        // Check if the user is a guest or has the required privilege
+        // Vérifiez si l'utilisateur est un visiteur ou dispose du privilège requis
         if ($this->isGuest() || $this->hasRequiredPrivilege()) {
-            // Retrieve privilege data if needed
+            // Récupérer les données de privilège si nécessaire
             $privilege = new Privilege();
             $privileges = $privilege->select('privilege');
 
-            // Render the user creation view
+            // Rendre la vue de création d'utilisateur
             View::render('user/create', ['privileges' => $privileges]);
         } else {
-            // Redirect to login if not a guest and does not have the required privilege
+            // Redirection vers la connexion si vous n'êtes pas un invité et ne disposez pas du privilège requis
             return View::redirect('login');
         }
     }
 
     private function isGuest() {
-        // Check if the user is a guest
+        // Vérifiez si l'utilisateur est un invité
         return !isset($_SESSION['fingerPrint']) || $_SESSION['fingerPrint'] !== md5($_SERVER['HTTP_USER_AGENT'] . $_SERVER['REMOTE_ADDR']);
     }
 
     private function hasRequiredPrivilege() {
-        // Check if the user has the required privilege
+        // Vérifiez si l'utilisateur dispose du privilège requis
         return isset($_SESSION['privilege_id']) && ($_SESSION['privilege_id'] == 1 || $_SESSION['privilege_id'] == 2 || $_SESSION['privilege_id'] == 3);
     }
 
+    /**
+     * Fonction pour créer de nouveaux utilisateurs
+     * et enregistrer les données dans la base de données
+     */
     public function store($data){
         Auth::session();
         $validator = new Validator;
@@ -60,8 +64,6 @@ class UserController{
            
         }else{
             $errors = $validator->getErrors();
-            //print_r($data);
-            //print_r($errors);
             $privilege = new Privilege;
             $privileges = $privilege->select('privilege');
             return View::render('user/create', ['errors'=>$errors, 'user'=>$data, 'privileges'=>$privileges]);

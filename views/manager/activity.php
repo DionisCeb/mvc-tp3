@@ -6,7 +6,7 @@
             <section class="canvas flex-center">
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                 <div>
-                    <h3>Stats:</h3>
+                    <h3>Graphique:</h3>
                     <canvas id="myChart" width="1200"></canvas>
                 </div>
             </section>
@@ -16,7 +16,7 @@
                         <th>Adresse IP</th>
                         <th>Date</th>
                         <th>Nom d'utilisateur</th>
-                        <th>Est connecté ?</th>
+                        <th>Est-ce connecté ?</th>
                         <th>Page visitée</th>
                     </tr>
                 </thead>
@@ -26,11 +26,7 @@
                         <td>{{ activity.ip }}</td>
                         <td>{{ activity.date }}</td>
                         <td>{{ activity.username }}</td>
-                        {% if  guest %}
-                            <td>non - visiteur</td>
-                        {% else %}
-                            <td>Oui - connecté</td>
-                        {% endif %}
+                        <td>{{ activity.username == 'visiteur' ? 'Non-Visiteur' : 'Oui-connecté' }}</td>
                         <td>{{ activity.page }}</td>
                     </tr>
                     {% else %}

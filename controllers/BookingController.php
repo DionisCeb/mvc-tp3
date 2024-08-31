@@ -18,24 +18,28 @@ class BookingController{
      * Fonction pour afficher le formulaire de création d'une réservation
      */
     public function create() {
-        // Check if the user is logged in; redirect to /login if not
+        // Vérifiez si l'utilisateur est connecté ; redirigez vers /login si ce n'est pas le cas
         if (!Auth::session()) {
-            return; // Auth::session() already handles redirection
+            return;
         }
     
-        // Create an instance of the Car model to retrieve car data
+        // Créez une instance du modèle Car pour récupérer les données de la voiture
         $car = new Car();
-        $carData = $car->findAll(); // Assuming findAll() returns all car records
+        //renvoie tous les enregistrements de voiture
+        $carData = $car->findAll();
     
-        // Create an instance of the Booking model to retrieve booking data (if needed)
+        // Créez une instance du modèle de réservation pour récupérer les données de réservation
         $booking = new Booking();
-        $listBookings = $booking->findAll(); // Assuming findAll() returns all booking records
+        //renvoie tous les enregistrements de réservation
+        $listBookings = $booking->findAll();
     
-        // Render the booking creation view with the necessary scripts, car data, and booking data
+        // Afficher la vue de création de réservation avec les scripts nécessaires, les données de la voiture et les données de réservation
         View::render('booking/create', [
             'scripts' => ['select-options.js'],
-            'cars' => $carData, // Pass car data to the view
-            'bookings' => $listBookings // Pass booking data to the view (if needed)
+            //les données de la voiture à la vue
+            'cars' => $carData,
+            //les données de la reservation à la vue
+            'bookings' => $listBookings
         ]);
     }
 
@@ -118,14 +122,15 @@ class BookingController{
                 'check_out_time' => $data['check_out_time'],
             ]);
             if ($bookingId) {
-                // Call sendConfirmationEmail after booking is created
+                // Appeler pour envoyer un e-mail de confirmation une fois la réservation créée
                 $this->sendConfirmationEmail($data['email'], $data['name'], $data['surname'], $data['phone'], $data['type'], $data['make'], $data['model'], $data['color'], $data['check_in_date'], $data['check_in_time'], $data['check_out_date'], $data['check_out_time']);
                 $privilegeId = $_SESSION['privilege_id'] ?? null;
+                //en fonction de privilèges
                 if ($privilegeId == 1 || $privilegeId == 2 || $privilegeId == 3) {
-                    // Redirect to bookings page with all bookings
+                    // Redirection vers la page de réservation avec toutes les réservations
                     return View::redirect('bookings');
                 } else {
-                    // Redirect to bookings page with only the user's booking
+                    // Redirection vers la page de réservation avec uniquement la réservation de l'utilisateur
                     return View::redirect('booking/show?id=' . $bookingId);
                 }
             } else {
@@ -140,29 +145,32 @@ class BookingController{
 
     }
 
-    // Method to send confirmation email
+    /**
+     * Méthode pour envoyer un e-mail de confirmation
+     */
     private function sendConfirmationEmail($clientEmail, $name, $surname, $phone, $type, $make, $model, $color, $checkInDate, $checkInTime, $checkOutDate, $checkOutTime) {
 
         $mail = new PHPMailer(true);
         
         try {
-            // Server settings
+            // Paramètres du serveur
             $mail->isSMTP();
             $mail->SMTPAuth = true;
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            // SMTP credentials
-            $mail->Username = 'luxurycarbookingg@gmail.com'; // Gmail address
+            // Informations d'identification SMTP
+            $mail->Username = 'luxurycarbookingg@gmail.com';
             $mail->Password = 'iotq gwaw tles ytlt'; 
 
-            // Recipients
+            // Destinataires
             $mail->setFrom('luxurycarbookingg@gmail.com', 'Deluuxe Car Booking');
             $mail->addAddress($clientEmail); // Add a recipient
 
-            // Content
-            $mail->isHTML(true); // Set email format to HTML
+            // Contenu
+            // Définir le format de courrier électronique sur HTML
+            $mail->isHTML(true); 
             $mail->Subject = 'Booking Confirmation';
             $mail->Body = "
             <h1>Booking Confirmation</h1>
@@ -200,7 +208,6 @@ class BookingController{
         $queryBuilder = new Booking();
         $listBookings = $queryBuilder->findAll();
         // Rend la vue de la liste des réservations
-        var_dump($_SESSION);
         View::render('booking/list', ['bookings' =>$listBookings]);
     }
 
@@ -245,7 +252,7 @@ class BookingController{
                 $car = new Car();
                 $carData = $car->findAll(); // Assuming this returns all car records
     
-                // Extract unique makes, models, and colors from the car data
+                // Extraire des marques, des modèles et des couleurs uniques à partir des données de la voiture
                 $types = array_unique(array_column($carData, 'type'));
                 $makes = array_unique(array_column($carData, 'make'));
                 $models = array_unique(array_column($carData, 'model'));
@@ -424,42 +431,45 @@ class BookingController{
         }
     }
 
+    /**
+     * Fonction pour générer un document PDF pour la réservation
+     */
     public function generatePdf() {
         if (isset($_GET['id']) && $_GET['id'] != null) {
-            // Create an instance of the Booking model to fetch the data
+            // Créer une instance du modèle Booking pour récupérer les données
             $queryBuilder = new Booking();
             $bookingData = $queryBuilder->findOne((int)$_GET['id']);
     
             if ($bookingData) {
-                // Initialize Dompdf
+                // Initialiser Dompdf
                 $dompdf = new Dompdf();
                 $dompdf->setPaper('A4', 'portrait');
     
-                // Load HTML template from file
+                // Charger le modèle HTML à partir du fichier
                 $templatePath = __DIR__ . '/../views/booking/booking-template.php';
                 $htmlTemplate = file_get_contents($templatePath);
     
-                // Replace placeholders with actual data
+                // Remplacer les espaces réservés par des données réelles
                 $html = str_replace(
                     ['{{booking_id}}', '{{client_name}}', '{{client_surname}}', '{{client_email}}', '{{client_phone}}', '{{car_make}}', '{{car_model}}', '{{car_color}}', '{{check_in_date}}', '{{check_in_time}}', '{{check_out_date}}', '{{check_out_time}}'],
                     [htmlspecialchars($bookingData['booking_id']), htmlspecialchars($bookingData['client_name']), htmlspecialchars($bookingData['client_surname']), htmlspecialchars($bookingData['client_email']), htmlspecialchars($bookingData['client_phone']), htmlspecialchars($bookingData['car_make']), htmlspecialchars($bookingData['car_model']), htmlspecialchars($bookingData['car_color']), htmlspecialchars($bookingData['check_in_date']), htmlspecialchars($bookingData['check_in_time']), htmlspecialchars($bookingData['check_out_date']), htmlspecialchars($bookingData['check_out_time'])],
                     $htmlTemplate
                 );
     
-                // Load HTML content into Dompdf
+                // Charger du contenu HTML dans Dompdf
                 $dompdf->loadHtml($html);
     
-                // Render the PDF
+                // Rendre le PDF
                 $dompdf->render();
     
-                // Stream the generated PDF
+                // Diffusez le PDF généré
                 $dompdf->stream("booking_confirmation.pdf", array("Attachment" => 0));
             } else {
-                // Handle case where booking data is not found
+                // Gérer les cas où les données de réservation ne sont pas trouvées
                 echo "Booking not found.";
             }
         } else {
-            // Handle case where ID is missing
+            // Gérer les cas où l'ID est manquant
             echo "No booking ID provided.";
         }
     }

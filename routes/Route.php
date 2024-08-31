@@ -39,12 +39,10 @@ class Route {
 
                     $activity = new Activity();
                     $res = $activity->updateActivity(
-                        $_SESSION['name'] ?? 'guest',
+                        $_SESSION['name'] ?? 'visiteur',
                         $_SESSION['ip'] ?? 0,
                         $route['url']   
                     );
-
-                    var_dump($_SESSION);
                 }elseif($method == "POST"){
                     if(isset($urlSegments[1])){
                         parse_str($urlSegments[1], $queryParams);
@@ -53,8 +51,6 @@ class Route {
                         $controllerInstance->$methodName($_POST);
                     }
                 }
-                /* var_dump("Here is the page ".$controllerName);
-                var_dump("Here is the page ".$route['url']); */
                 return;
             }
        }

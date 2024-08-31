@@ -21,13 +21,11 @@ class AuthController{
         if($validator->isSuccess()){
             $user = new User;
             $checkuser = $user->checkuser($data['username'],$data['password']);
-            /* var_dump("checkUser");
-            var_dump($checkuser);
-            var_dump($_SESSION); */
+            
             if($checkuser){
-                // Retrieve the user's privilege
+                // Récupérer le privilège de l'utilisateur
                 $privilegeId = $_SESSION['privilege_id'];
-                // Redirect based on the privilege
+               // Redirection basée sur le privilège
                 if (in_array($privilegeId, [1, 2, 3])) {
                     return View::redirect('bookings');
                 } else {
@@ -40,12 +38,13 @@ class AuthController{
         
         }else{
             $errors = $validator->getErrors();
-            //print_r($data);
-            //print_r($errors);
             return View::render('auth/index', ['errors'=>$errors, 'user'=>$data]);
         }
     }
 
+    /**
+     * fonction permettant de déconnecter l'utilisateur de la session actuelle
+     */
     public function delete(){
         session_destroy();
         return View::redirect('login');

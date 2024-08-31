@@ -7,6 +7,12 @@ class Activity extends CRUD {
     protected $primaryKey = "id";
     protected $fillable = ['username', 'ip_address', 'activity_date', 'page_visited'];
 
+    /**
+     * Récupère toutes les activités depuis la base de données.
+     *
+     * @return array Un tableau contenant toutes les activités.
+     */
+
     public function getAllActivities() {
         $sql = "
             SELECT a.ip_address AS ip, 
@@ -21,6 +27,12 @@ class Activity extends CRUD {
         return $stmt->fetchAll();
     }
 
+    /**
+     * Récupère les statistiques d'activité agrégées par date et par page.
+     *
+     * @return array Un tableau associatif contenant les statistiques agrégées.
+     */
+    
     public function getStats() {
         $sql = "
             SELECT 
