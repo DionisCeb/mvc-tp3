@@ -16,7 +16,6 @@ class AuthController{
         $validator = new Validator;
         $validator->field('username', $data['username'])->email()->required()->max(50)->isExist('User', 'username');
         $validator->field('password', $data['password'])->min(5)->max(20);
-        var_dump("store");
 
         if($validator->isSuccess()){
             $user = new User;

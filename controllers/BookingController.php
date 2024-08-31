@@ -61,7 +61,7 @@ class BookingController{
         $validator->field('name', $data['name'])->required()->min(3)->max(45);
         $validator->field('surname', $data['surname'])->required()->min(3)->max(45);
         $validator->field('email', $data['email'])->required()->email()->max(45);
-        $validator->field('phone', $data['phone'])->required()->max(20);
+        $validator->field('phone', $data['phone'])->required()->phone()->max(20);
     
         // Valider les données de la voiture
         $validator->field('type', $data['type'])->required();

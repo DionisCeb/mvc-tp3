@@ -66,6 +66,21 @@ class Validator {
     }
 
     /**
+     * Vérifier si la valeur est une telephone valide
+     */
+    public function phone(){
+        // Regular expression for a broader range of phone number formats
+        // This example covers formats like 123 456 7890, 123-456-7890, 1234567890, or +1 123 456 7890
+        $pattern = '/^\d+$/';
+    
+        if (!empty($this->value) && !preg_match($pattern, $this->value)) {
+            $this->errors[$this->key] = "Invalid $this->name format";
+        }
+        return $this;
+    }
+    
+
+    /**
      * is Unique?
      */
     public function isUnique($model){
