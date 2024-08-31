@@ -38,6 +38,13 @@
     min-height: 100dvh;
 }
 
+.height40 {
+    min-height: 40dvh;
+}
+.height50 {
+    min-height: 50dvh;
+}
+
 
 /*gap*/
 .gap50 {

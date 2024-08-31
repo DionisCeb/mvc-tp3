@@ -200,6 +200,7 @@ class BookingController{
         $queryBuilder = new Booking();
         $listBookings = $queryBuilder->findAll();
         // Rend la vue de la liste des réservations
+        var_dump($_SESSION);
         View::render('booking/list', ['bookings' =>$listBookings]);
     }
 

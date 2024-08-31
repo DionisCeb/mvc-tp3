@@ -9,9 +9,12 @@ class TrackerActivityController {
         $activityModel = new Activity();
         $activities = $activityModel->getAllActivities();
 
+        $chartData = $activityModel->getStats();
+
         View::render('/manager/activity', [
             'scripts'=> ['active-link.js'],
-            'activities' => $activities
+            'activities' => $activities,
+            'chartData' => json_encode($chartData)
         ]);
     }
 }

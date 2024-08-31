@@ -3,6 +3,8 @@ namespace App\Providers;
 
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use App\Models\User;
+
 
 class View{
 
@@ -18,6 +20,13 @@ class View{
             $guest = true;
         }
         $twig->addGlobal('guest',$guest);
+        $user = new User;
+        if (isset($_SESSION['user_id'])) {
+            $userInfo = $user->unique('id', $_SESSION['user_id']);
+            $twig->addGlobal('liu',$userInfo);
+        } else {
+            $twig->addGlobal('liu', false);
+        }
 
         echo $twig->render($template.".php", $data);
     }
