@@ -1,0 +1,64 @@
+@import url(../componnents/form/reservation-form.css);
+.reservation-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+
+.reservation-boxes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*left section book now*/
+.deals__create-booking {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+/*title*/
+.create-booking__title {
+    font-size: 40px;
+    color: var(--main-acent-color);
+    font-weight: bold;
+}
+
+h1.deals-title {
+    color: var(--main-acent-color);
+}
+
+/*title*/
+.create-booking__subtitle {
+    font-size: 25px;
+    color: white;
+    font-weight: bold;
+}
+/*button link*/
+.create-booking__link {
+    display: flex;
+}
+
+.container__form-deals {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
+    align-items: center;
+}
+
+/*deals box*/
+.deals-box {
+    display: flex;
+    gap: 30px;
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+}
+.deals-img img {
+    width: 100%;
+    opacity: 0.6;
+    border-radius: 10px;
+}

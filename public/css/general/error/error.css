@@ -1,0 +1,66 @@
+@import url(development.css);
+.error_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    height: 100dvh;
+}
+
+.error_text {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+
+.error_container_title {
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.error_container_subtitle {
+    font-size: 40px;
+    text-align: center;
+    color: orange;
+}
+
+
+/*img*/
+
+.error_img {
+    width: 40%;
+}
+
+.error_img img{
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+
+/*span error*/
+.error {
+    color: red;
+    font-size: 10px;
+}
+
+span.error {
+    float: left;
+    width: 95%;
+    margin-top: 5px;
+    background: #8d4646;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    /* font-size: 14px; */
+    padding: 10px;
+}
+
+.error-div {
+    /* background: aliceblue; */
+    gap: 10px;
+    display: flex;
+}
+

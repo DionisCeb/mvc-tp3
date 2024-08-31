@@ -3,8 +3,10 @@
 <section class="admin-interface">
         <div class="admin-container">
             <h1>Gestion des réservations</h1>
-
+            
+            {% if session.privilege_id == 1 or session.privilege_id == 2 %}
             <a href="{{base}}/booking/create" class="header-box_btn deals-link return-secondary-btn secondary-edit-btn">Nouvelle réservation</a>
+            {% endif %}
             <table class="booking-list-table">
                 <tr>
                     <th>id</th>
@@ -21,7 +23,9 @@
                     <th>Modèle de voiture</th>
                     <th>Couleur de la voiture</th>
                     <th>Modifier</th>
+                    {% if session.privilege_id == 1 or session.privilege_id == 2 %} 
                     <th>Supprimer</th>
+                    {% endif %}
                 </tr>
                 {% for booking in bookings %}
                 <tr>
@@ -40,7 +44,9 @@
                     <td>{{booking.car_color}}</td>
                     
                     <td><a href="{{base}}/booking/edit?id={{booking.booking_id}}"><img src="{{asset}}img/icons/edit.svg" class="icon-action icon-green " alt="Modifier"></a></td>
+                    {% if session.privilege_id == 1 or session.privilege_id == 2 %}
                     <td><button data-id="{{booking.booking_id}}" class="btn-delete"><img src="{{asset}}img/icons/delete.svg" class="icon-action icon-red" alt="Supprimer"></button></td>
+                    {% endif %}
                 </tr>
                 {% endfor %}
             </table>

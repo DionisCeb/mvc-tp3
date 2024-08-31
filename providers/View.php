@@ -3,6 +3,8 @@ namespace App\Providers;
 
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
+use App\Models\User;
+
 
 class View{
 
@@ -11,6 +13,20 @@ class View{
         $twig = new Environment($loader);
         $twig->addGlobal('asset', ASSET);
         $twig->addGlobal('base', BASE);
+        $twig->addGlobal('session', $_SESSION);
+        if(isset($_SESSION['fingerPrint']) and ($_SESSION['fingerPrint'] ===  md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR']))){
+            $guest = false;
+        }else{
+            $guest = true;
+        }
+        $twig->addGlobal('guest',$guest);
+        $user = new User;
+        if (isset($_SESSION['user_id'])) {
+            $userInfo = $user->unique('id', $_SESSION['user_id']);
+            $twig->addGlobal('liu',$userInfo);
+        } else {
+            $twig->addGlobal('liu', false);
+        }
 
         echo $twig->render($template.".php", $data);
     }

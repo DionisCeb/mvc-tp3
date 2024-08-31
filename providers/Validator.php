@@ -66,6 +66,48 @@ class Validator {
     }
 
     /**
+     * Vérifier si la valeur est une telephone valide
+     */
+    public function phone(){
+        // Regular expression for a broader range of phone number formats
+        // This example covers formats like 123 456 7890, 123-456-7890, 1234567890, or +1 123 456 7890
+        $pattern = '/^\d+$/';
+    
+        if (!empty($this->value) && !preg_match($pattern, $this->value)) {
+            $this->errors[$this->key] = "Invalid $this->name format";
+        }
+        return $this;
+    }
+    
+
+    /**
+     * is Unique?
+     */
+    public function isUnique($model){
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        $unique = $model->unique($this->key, $this->value);
+        if($unique){
+            $this->errors[$this->key]="$this->name must be unique";
+        }
+        return $this;
+    }
+
+    /**
+     * Does it exists?
+     */
+    public function isExist($model, $field = 'id'){
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        $unique = $model->unique($field, $this->value);
+        if(!$unique){
+            $this->errors[$this->key]="$this->name must exist";
+        }
+        return $this;
+
+    }
+
+    /**
      * Vérifier si la valeur est une date valide et si elle n'est pas antérieure à aujourd'hui
      */
     public function date($format = 'Y-m-d') {

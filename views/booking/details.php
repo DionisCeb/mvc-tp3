@@ -21,11 +21,13 @@
                 <div class="value-confirmation"><p>Modèle de voiture: <span>{{booking.car_model}}</span></p></div>
                 <div class="value-confirmation"><p>Couleur de voiture: <span>{{booking.car_color}}</span></p></div>
             </div>
-            <a href="{{base}}/bookings" class="header-box_btn deals-link return-secondary-btn">Retour à la liste</a>
-           <!--  <a href="{{base}}/booking/show?id={{booking.booking_id}}" class="header-box_btn deals-link return-secondary-btn secondary-edit-btn">Modifier</a>
-            <a href="{{base}}/booking/delete?id={{booking.booking_id}}" class="header-box_btn deals-link return-secondary-btn secondary-delete-btn">Supprimer</a> -->
+            <div class="confirmation-links">
+                {% if session.privilege_id == 1 or session.privilege_id == 2 or session.privilege_id == 3 %} 
+                    <a href="{{base}}/bookings" class="btn btn-box details">Retour à la liste</a>
+                {% endif %} 
+                <a href="{{base}}/booking/edit?id={{booking.booking_id}}" class="btn btn-box details">Modifier</a>
+                <a href="{{ base }}/booking/generate-pdf?id={{booking.booking_id}}" class="btn btn-box details">Imprimer</a>
 
-<!--             <td><a href="{{base}}/booking/show?id={{booking.booking_id}}" class="booking-list-btn edit-btn">Modifier</a></td>
-                    <td><a href="{{base}}/booking/delete?id={{booking.booking_id}}" class="booking-list-btn delete-btn">Supprimer</a></td> -->
+            </div>
         </div>
 {{ include('layouts/footer.php')}}

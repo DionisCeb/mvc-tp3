@@ -41,14 +41,7 @@
     transform: scale(0.98);
 }
 
-/*check-in, check-out*/
-/* .name-surname input {
-    width: 100%;
-}
-.name-surname {
-    display: flex;
-    gap: 10px;
-} */
+
 .email-phone, .name-surname,
 .check-in, .check-out {
     display: flex;
@@ -57,4 +50,15 @@
 .email-phone input, .name-surname input,
 .check-in input, .check-out input {
     width: 100%;
+}
+
+/*contact*/
+.form-edit-question .btn-box {
+    width: auto;
+}
+
+.form-edit-question {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }

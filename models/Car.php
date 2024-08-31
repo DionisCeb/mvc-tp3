@@ -10,7 +10,7 @@ class Car extends CRUD{
 
 
      /**
-     * Update car data
+     * Mettre à jour les données de la voiture
      *
      * @param int $car_id
      * @param array $data
@@ -36,41 +36,61 @@ class Car extends CRUD{
     }
     
     /**
-     * Retieve car by base filters type/make/model/color
+     * Récupérer la voiture par type/marque/modèle/couleur de filtres de base
      */
     public function findOneByFilters(array $filters):array
     {
         if (!$filters) {
-            //if no filters, no cars to be found
+            //si aucun filtre, aucune voiture à trouver
             return [];
         }
-        // Start building the SQL query
+        // Commencer à construire la requête SQL
         $sql = "SELECT * FROM $this->table";
-        // Add WHERE clause and build the filter conditions
+        // Créez les conditions de filtre
         $conditions = [];
         foreach ($filters as $key => $value) {
             $conditions[] = "$key = :$key";
         }        
-        // Join conditions with AND
+        // Conditions de jointure avec AND
         $sql .= " WHERE " . implode(" AND ", $conditions);
-        // Add LIMIT 1 to fetch only the first record
+        // Ajoutez LIMIT 1 pour récupérer uniquement le premier enregistrement
         $sql .= " LIMIT 1";
         
-        // Prepare the statement
+        // Préparez la déclaration
         $stmt = $this->prepare($sql);
 
-        // Bind values
+        // Lier les valeurs
         foreach ($filters as $key => $value) {
             $stmt->bindValue(":$key", $value);
         }
         
-        // Execute the query
+        // Exécuter la requête
         $stmt->execute();
         
-        // Fetch the first result
+        // Récupérer le premier résultat
         $result = $stmt->fetch();
         
-        // Return result (false if no record is found)
+        // Renvoyer le résultat (faux si aucun enregistrement n'est trouvé)
         return $result !== false ? $result : [];
     }
+
+    public function findAll(): array {
+        // Définir la requête SQL pour récupérer tous les enregistrements de la table car
+        $sql = "SELECT * FROM $this->table";
+        
+        // Préparer l'instruction SQL
+        $stmt = $this->prepare($sql);
+        
+        // Exécuter l'instruction
+        $stmt->execute();
+        
+        // Récupérer tous les résultats sous forme de tableau associatif
+        $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        
+        // Renvoyer les résultats
+        return $results;
+    }
+    
+
+    
 }

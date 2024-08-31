@@ -1,10 +1,10 @@
-{{ include('layouts/header.php', {title:'Home'})}}
+{{ include('layouts/header.php', {title:'Accueil'})}}
     <header>
         <div class="structure">
             <div class="header-section">
                 <div class="header-section__box">
                     <div class="header-box__title">
-                        <h1>Deluuuxe Location</h1>
+                        <h1>Deluuxe Location</h1>
                     </div>
                     <div class="header-box__sub-title">
                         <h1>Nous offrons les meilleurs prix</h1>
@@ -17,6 +17,49 @@
             </div>
         </div>
     </header>
+
+    <section class="section__why-us flex-center-center">
+        <div class="structure">
+            <div class="container__why-us">
+                <div class="why-us__item">
+                    <div class="why-us__item--title">
+                        <h3>2K</h3>
+                    </div>
+                    <div class="why-us__item--subtitle">
+                        <h4>Membres inscrits</h4>
+                    </div>
+                </div>
+
+                <div class="why-us__item">
+                    <div class="why-us__item--title">
+                        <h3>15000+</h3>
+                    </div>
+                    <div class="why-us__item--subtitle">
+                        <h4>Inventaire vendu</h4>
+                    </div>
+                </div>
+
+                <div class="why-us__item">
+                    <div class="why-us__item--title">
+                        <h3>100%</h3>
+                    </div>
+                    <div class="why-us__item--subtitle">
+                        <h4>Prix ​​de vente reçu</h4>
+                    </div>
+                </div>
+
+                <div class="why-us__item">
+                    <div class="why-us__item--title">
+                        <h3>90%</h3>
+                    </div>
+                    <div class="why-us__item--subtitle">
+                        <h4>Clients satisfaits</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <section class="reservation-section" id="reserve-sec">
         <div class="structure">
             <div class="reservation-boxes-container">             
@@ -43,6 +86,33 @@
                     </div>
                 </div>
             </div>
+    </section>
+
+    
+
+    <section class="section__newsletter flex-center-center">
+        <div class="structure">
+            <div class="newsletter__img-box--container">
+                <div class="newsletter__subtitle--title--box">
+                    <div class="newsletter__subtitle">
+                        <small>Soyez plus proche</small>
+                    </div>
+                    <div class="newsletter__title">
+                        <h1>Recevez les actualités en vous abonnant à notre infolettre</h1>
+                    </div>
+                    <form id="newsletterForm" method="post" action="{{base}}/newsletter/subscribe">
+                        <div class="newsletter__box" style="display: flex; gap: 5px;">
+                            <input type="email" name="email" class="newsletter__box--input" id="newsletter-email" placeholder="Enter your email..." required>
+                            <button type="submit" class="btn btn-box newsletter-btn" id="newsletter-btn">Subscribe</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="newsletter__img__box">
+                    <img src="{{asset}}img/gallery/mercedes.jpg" alt="">
+                </div>
+            </div>
+        </div>
     </section>
     <section class="location-section">
         <div class="structure">

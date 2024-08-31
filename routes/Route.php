@@ -1,5 +1,7 @@
 <?php
 namespace App\Routes;
+use App\Models\User;
+use App\Models\Activity;
 
 class Route {
     private static $routes = [];
@@ -34,6 +36,13 @@ class Route {
                     }else{
                         $controllerInstance->$methodName();
                     }
+
+                    $activity = new Activity();
+                    $res = $activity->updateActivity(
+                        $_SESSION['name'] ?? 'visiteur',
+                        $_SESSION['ip'] ?? 0,
+                        $route['url']   
+                    );
                 }elseif($method == "POST"){
                     if(isset($urlSegments[1])){
                         parse_str($urlSegments[1], $queryParams);

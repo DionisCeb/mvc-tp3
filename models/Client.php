@@ -9,7 +9,7 @@ class Client extends CRUD{
     protected $fillable = ['name', 'surname', 'email', 'phone'];
 
     /**
-     * Update client data
+     * Mettre à jour les données client
      *
      * @param int $client_id
      * @param array $data
@@ -34,7 +34,7 @@ class Client extends CRUD{
     }
 
     /**
-     * Retieve client by email
+     * Récupérer le client par email
      */
     public function findByEmail(string $email) : array
     {

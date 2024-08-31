@@ -38,8 +38,7 @@
                         {% for privilege in privileges %}
                         <option value="{{privilege.id}}" {% if privilege.id==user.privilege_id %} selected {% endif %}>{{privilege.privilege}}</option>
                         {% endfor %}
-                        <option value="4">abc</option>
-                    </select>
+                </select>
                 {% if errors.privilege_id is defined %}
                     <span class="error">{{ errors.privilege_id }}</span>
                 {% endif %}
@@ -49,6 +48,9 @@
                 <input type="submit" class="btn" value="Save">
             </div>
         </form>
+        <div class="redirect-register">
+            <p>Déjà enregistré? <a href="{{base}}/login">se connecter</a></p>
+        </div>
     </section>
 {{ include('layouts/footer.php')}}
 

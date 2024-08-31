@@ -1,17 +1,17 @@
 .form-auth {
-    padding: 20px;
+    padding: 30px;
     background-color: var(--general-color-forms);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 400px;
     gap: 20px;
 }
 
 /*title*/
 .form-auth h2 {
     text-align: center;
-    color: rgb(111, 81, 25);
+    color: var(--main-acent-color);
     font-weight: bold;
     font-size: 30px;
 }

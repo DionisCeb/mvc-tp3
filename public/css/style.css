@@ -1,25 +1,25 @@
-@import url(componnents/navigations.css);
-@import url(componnents/header-box.css);
+/*components*/
+@import url(componnents/components.css);
 @import url(reservation-section.css);
 @import url(reservation-confirmation.css);
 @import url(location-section.css);
-@import url(admin-interface/booking-list.css);
-@import url(admin-interface/form-admin-section.css);
+/* @import url(admin-interface/booking-list.css);
+@import url(admin-interface/form-admin-section.css); */
 
-/*forms*/
-@import url(componnents/form.css);
+/*admin interface*/
+@import url(admin-interface/admin-interface.css);
 
-/*error css*/
-@import url(error/error.css);
-
-/*footer*/
-@import url(componnents/footer.css);
+/*sections*/
+@import url(sections/sections.css);
 
 /*animations*/
 @import url(animations/animations.css);
 
 /*utils*/
 @import url(utils/utils.css);
+
+/*general*/
+@import url(general/general.css);
 
 
 *{
@@ -31,7 +31,6 @@
     --primary-link: rgb(218, 160, 113);
 }
 body {
-    background-color: rgb(56, 111, 152);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
