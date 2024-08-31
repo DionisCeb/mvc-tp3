@@ -69,17 +69,7 @@ CREATE TABLE IF NOT EXISTS `booking` (
   KEY `client_id` (`client_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `booking`
---
 
-INSERT INTO `booking` (`id`, `car_id`, `client_id`, `check_in_date`, `check_in_time`, `check_out_date`, `check_out_time`, `updated_at`) VALUES
-(53, 2, 17, '2024-09-06', '05:48:00', '2024-09-27', '00:52:00', '2024-08-31 04:48:52'),
-(54, 4, 17, '2024-09-26', '04:00:00', '2024-09-27', '01:04:00', '2024-08-31 05:00:26'),
-(52, 54, 18, '2024-09-06', '04:17:00', '2024-09-19', '00:19:00', '2024-08-31 04:18:06'),
-(49, 52, 16, '2024-08-31', '03:04:00', '2024-09-04', '11:09:00', '2024-08-30 15:04:23'),
-(50, 54, 17, '2024-09-07', '04:12:00', '2024-09-27', '11:17:00', '2024-08-30 19:13:29'),
-(51, 53, 17, '2024-09-07', '12:23:00', '2024-09-27', '15:23:00', '2024-08-30 16:23:32');
 
 -- --------------------------------------------------------
 
@@ -102,19 +92,11 @@ CREATE TABLE IF NOT EXISTS `car` (
 --
 
 INSERT INTO `car` (`id`, `type`, `make`, `model`, `color`) VALUES
-(53, 'SUV', 'Mercedes', 'A-Class', 'Gris'),
-(54, 'Coupé', 'Mercedes', 'A-Class', 'Gris'),
-(52, 'Hatchback', 'Mercedes', 'A-Class', 'Gris'),
-(10, 'Coupé', 'Mercedes', 'C-Class', 'Blanc'),
-(9, 'SUV', 'Mercedes', 'GLC', 'Gris'),
-(8, 'Hatchback', 'Mercedes', 'A-Class', 'Noir'),
-(7, 'Sport', 'BMW', 'Z4', 'Blanc'),
-(6, 'SUV', 'BMW', 'X5', 'Gris'),
-(5, 'Coupé', 'BMW', 'M4', 'Blanc'),
-(4, 'SUV', 'Audi', 'Q5', 'Gris'),
-(3, 'Coupé', 'Audi', 'A5', 'Noir'),
+(5, 'SUV', 'Mercedes', 'GLC', 'Gris'),
+(4, 'Hatchback', 'Mercedes', 'A-Class', 'Noir'),
+(3, 'Coupé', 'BMW', 'M4', 'Blanc'),
 (2, 'Sport', 'Audi', 'TT', 'Noir'),
-(1, 'Hatchback', 'Audi', 'A1', 'Gris');
+(1, 'Electoro', 'Audi', 'E-tron', 'Gris');
 
 -- --------------------------------------------------------
 
@@ -132,15 +114,6 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `client`
---
-
-INSERT INTO `client` (`id`, `name`, `surname`, `email`, `phone`) VALUES
-(18, 'Mihail', 'Sidorenco', 'mihailsidorenco@mail.ru', '445885828848'),
-(16, 'Cebanu', 'Dionis', 'dionis.cebanu003@gmail.com', '1234567890'),
-(17, 'Cebanu', 'Dionis', 'luxurycarbookingg@gmail.com', '77777777777');
 
 -- --------------------------------------------------------
 
@@ -191,9 +164,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `email`, `privilege_id`, `created_at`) VALUES
-(1, 'admin', 'admin@gmail.com', '$2y$10$IaBNsheKVXp77XlgBQFBguUGonCcdQndI3.nHCa/oRpiB2.PL0uy.', 'admin@gmail.com', 1, '2024-08-22 23:22:10'),
-(6, 'dionis', 'dionis@gmail.com', '$2y$10$3/S10c7G5xBrBCqG69W9TeJXaNOdydokyNkKxtvZ.Cbg.SRm7.8eG', 'dionis@gmail.com', 1, '2024-08-23 00:18:00'),
-(9, 'darii', 'darii@gmail.com', '$2y$10$KSh5Stm4xLjbEQyXF10CI.dEjGSD2jmau5jlXt9TwrxH8U/BIOZWi', 'darii@gmail.com', 2, '2024-08-23 19:02:57');
+(1, 'dionis', 'dionis@gmail.com', '$2y$10$3/S10c7G5xBrBCqG69W9TeJXaNOdydokyNkKxtvZ.Cbg.SRm7.8eG', 'dionis@gmail.com', 1, '2024-08-23 00:18:00'),
+(2, 'darii', 'darii@gmail.com', '$2y$10$KSh5Stm4xLjbEQyXF10CI.dEjGSD2jmau5jlXt9TwrxH8U/BIOZWi', 'darii@gmail.com', 4, '2024-08-23 19:02:57');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
