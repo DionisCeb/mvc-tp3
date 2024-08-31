@@ -1,5 +1,4 @@
 GitHub https://github.com/DionisCeb/mvc-tp3
-WebDev Je ne peux pas lancer le projet en dehors du collège. Je vous enverrai le lien dès mon arrivée au collège demain (14 août).
 
 Il s'agit d'un projet de réservation de voitures. Les tables de la base de données sont décrites dans le fichier car_rent.sql. 
 La page "home" est la page sur laquelle arrive le client dès qu'il ouvre le projet "/" ou "/home". Pour vous connecter, vous devez choisir l'option de vous connecter avec l'un des utilisateurs de car_rent.sql
